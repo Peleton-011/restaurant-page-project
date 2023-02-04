@@ -13,7 +13,7 @@ const currMode = "development"; // production
 
 module.exports = () => {
     // This code executes before module.exports is defined.
-    console.log("🛎🛎🛎 isProduction", isProductionMode(nodeEnv));
+    console.log("🛎🛎🛎 isProduction", isProductionMode(currMode));
 
     return {
         mode: currMode,
@@ -79,8 +79,8 @@ module.exports = () => {
             clean: true,
         },
         optimization: {
-            minimize: isProductionMode(nodeEnv),
-            minimizer: isProductionMode(nodeEnv)
+            minimize: isProductionMode(currMode),
+            minimizer: isProductionMode(currMode)
                ? [new TerserPlugin(), new CssMinimizerPlugin()]
                : [],
             innerGraph: true,

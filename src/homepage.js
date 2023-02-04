@@ -7,11 +7,7 @@ function component() {
 
     element.appendChild(btn);
 
-
     return element;
 }
 
-export {
-    component,
-    
-}
+export { component };

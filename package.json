@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "private": true,
-  "sideEffects": ["*.css"],  
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "start": "webpack serve --config webpack.config.js --open",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,6 +16,7 @@
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^6.7.3",
+    "css-minimizer-webpack-plugin": "^4.2.2",
     "csv-loader": "^3.0.5",
     "html-webpack-plugin": "^5.5.0",
     "json5": "^2.2.3",
