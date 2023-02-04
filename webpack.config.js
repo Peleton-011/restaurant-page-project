@@ -18,7 +18,7 @@ module.exports = () => {
     return {
         mode: currMode,
         entry: "./src/index.js",
-        devtool: "eval-source-map", //for production, use none
+        devtool: "eval", //for production, use none
         module: {
             rules: [
                 {

@@ -3,11 +3,15 @@ function component() {
     const btn = document.createElement("button");
 
     // Lodash, now imported by this script
-    element.innerHTML = _.join(["Hello", "webpack"], " ");
+    element.innerHTML = "Test";
 
     element.appendChild(btn);
 
     return element;
 }
 
-export { component };
+function main(parent) {
+    parent.appendChild(component());
+}
+
+export { main };
