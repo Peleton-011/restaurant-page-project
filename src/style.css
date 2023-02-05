@@ -4,6 +4,15 @@ body {
 
 nav {
     height: 10vh;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
+
+nav > button {
+    border: none;
 }
 
 main {

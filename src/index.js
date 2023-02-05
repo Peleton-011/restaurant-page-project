@@ -12,16 +12,12 @@ const setup = async () => {
     document.body.appendChild(nav);
     document.body.appendChild(main);
 
-    console.log("About to add tabs");
-    console.log(pageData);
-
     //Add buttons to switch between pages
     addTabs(pageData.pageList);
 };
 
 const addTabs = async (pageList) => {
     for (let i = 0; i < pageList.length; i++) {
-        console.log("loading new page");
         const pageContent = await import(`./pageData/${pageList[i]}.json`);
         const thisTab = new Tab(pageContent);
 
@@ -40,10 +36,8 @@ class Tab {
     }
 
     getScript(name) {
-        console.log(`./pageData/${name}.js`);
         const script = () => {
             return import(`./pageData/${name}.js`).then((pageScript) => {
-                console.log("clicked");
                 this.cleanCanvas();
                 pageScript.main(document.querySelector("main"));
             });
@@ -54,13 +48,11 @@ class Tab {
 
     tabButton() {
         const script = this.getScript(this.page.script);
-        console.log(script);
         const tabButton = button(this.name, "tab", this.name, script);
         return tabButton;
     }
 
     cleanCanvas() {
-        console.log("changing tab");
         const main = document.querySelector("main");
         while (main.firstChild) {
             main.removeChild(main.lastChild);
@@ -69,7 +61,6 @@ class Tab {
 }
 
 function button(text, classList, id, onClick) {
-    console.log(onClick);
     const button = document.createElement("button");
     button.textContent = text;
     button.classList = classList;
