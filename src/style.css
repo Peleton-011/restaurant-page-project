@@ -3,6 +3,10 @@
     --bg-color: hsl(323, 21%, 16%);
 }
 
+* {
+    font-family: "coolvetica";
+}
+
 body {
     min-height: 100vh;
 

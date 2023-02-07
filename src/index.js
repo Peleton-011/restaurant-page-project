@@ -1,5 +1,6 @@
 import _ from "lodash";
 import "./style.css";
+import "./fonts.css";
 import pageData from "./pageData/pages.json";
 
 const tabs = [];
