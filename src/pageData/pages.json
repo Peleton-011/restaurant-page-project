@@ -1,3 +1,19 @@
 {
+    "title": "Paradise 11",
+    "fonts": {
+        "name": "Tarrget",
+        "variations": [
+            "3D", 
+            "Academy", 
+            "Gradient",
+            "Leftalic",
+            "Chrome",
+            "Condensed",
+            "Laser",
+            "Outline",
+            "Half-Tone",
+            "Expanded"
+        ]
+    },
     "pageList": ["homepage", "menu", "about", "contact"]
 }

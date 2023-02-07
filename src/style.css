@@ -1,10 +1,12 @@
+@import url("./fonts.css");
+
 :root {
     --neon-color: hsl(317, 100%, 54%);
     --bg-color: hsl(323, 21%, 16%);
 }
 
 * {
-    font-family: "coolvetica";
+    font-family: coolvetica;
 }
 
 body {
@@ -15,12 +17,21 @@ body {
     margin-right: 0;
 }
 
-nav {
-    height: 10vh;
+header {
+    font-size: calc(25vh - 6rem);
+
+    padding-left: 2rem;
+
+    height: calc(25vh - 4rem);
     width: 100%;
 
-    padding: 0;
+}
+
+nav {
     margin: 0;
+    padding: 0;
+
+    width: 100%;
 
     display: flex;
     align-items: center;
@@ -42,7 +53,7 @@ nav > button:last-of-type {
 }
 
 nav > button {
-    font-size: 1rem;
+    font-size: 1.25rem;
 
     display: inline-block;
     cursor: pointer;
@@ -61,6 +72,8 @@ nav > button {
     position: relative;
 
     background: var(--bg-color);
+
+    transition: all 100ms linear;
 }
 
 nav > butt-on::before {
@@ -89,7 +102,6 @@ nav > button::after {
     opacity: 0;
     background-color: var(--neon-color);
     z-index: -1;
-    transition: opacity 100ms linear;
 }
 
 nav > button:hover,
@@ -108,6 +120,18 @@ nav > button:active::after {
     opacity: 1;
 }
 
+.sticky {
+    position: fixed;
+    margin: 0;
+    top: 0;
+    width: 100%;
+}
+  
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + main {
+    padding-top: 60px;
+}
+
 main {
-    height: 90vh;
+    min-height: 100rem;
 }

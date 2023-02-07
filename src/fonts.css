@@ -1,4 +1,230 @@
 @font-face {
     font-family: "coolvetica";
-    src: url("fonts/coolvetica_compressed_hv") format("otf");
+    src: url("./assets/fonts/coolvetica/coolvetica_rg_it.otf");
 }
+
+@font-face {
+    font-family: 'Tarrget 3D';
+    src: url('./assets/fonts/target/Tarrget3D.woff2') format('woff2'),
+        url('./assets/fonts/target/Tarrget3D.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tarrget 3D';
+    src: url('./assets/fonts/target/Tarrget3DItalic.woff2') format('woff2'),
+        url('./assets/fonts/target/Tarrget3DItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tarrget Academy';
+    src: url('./assets/fonts/target/TarrgetAcademy.woff2') format('woff2'),
+        url('./assets/fonts/target/TarrgetAcademy.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tarrget Academy';
+    src: url('./assets/fonts/target/TarrgetAcademyItalic.woff2') format('woff2'),
+        url('./assets/fonts/target/TarrgetAcademyItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tarrget Gradient';
+    src: url('./assets/fonts/target/TarrgetGradientItalic.woff2') format('woff2'),
+        url('./assets/fonts/target/TarrgetGradientItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tarrget Leftalic';
+    src: url('./assets/fonts/target/TarrgetLeftalic.woff2') format('woff2'),
+        url('./assets/fonts/target/TarrgetLeftalic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tarrget Chrome';
+    src: url('./assets/fonts/target/TarrgetChrome.woff2') format('woff2'),
+        url('./assets/fonts/target/TarrgetChrome.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tarrget Condensed';
+    src: url('./assets/fonts/target/TarrgetCondensed.woff2') format('woff2'),
+        url('./assets/fonts/target/TarrgetCondensed.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tarrget Laser';
+    src: url('./assets/fonts/target/TarrgetLaser.woff2') format('woff2'),
+        url('./assets/fonts/target/TarrgetLaser.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tarrget Outline';
+    src: url('./assets/fonts/target/TarrgetOutline.woff2') format('woff2'),
+        url('./assets/fonts/target/TarrgetOutline.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tarrget Chrome';
+    src: url('./assets/fonts/target/TarrgetChromeItalic.woff2') format('woff2'),
+        url('./assets/fonts/target/TarrgetChromeItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tarrget Half-Tone';
+    src: url('./assets/fonts/target/TarrgetHalf-Tone.woff2') format('woff2'),
+        url('./assets/fonts/target/TarrgetHalf-Tone.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tarrget Expanded';
+    src: url('./assets/fonts/target/TarrgetExpandedItalic.woff2') format('woff2'),
+        url('./assets/fonts/target/TarrgetExpandedItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tarrget Condensed';
+    src: url('./assets/fonts/target/TarrgetCondensedItalic.woff2') format('woff2'),
+        url('./assets/fonts/target/TarrgetCondensedItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tarrget';
+    src: url('./assets/fonts/target/TarrgetItalic.woff2') format('woff2'),
+        url('./assets/fonts/target/TarrgetItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tarrget Gradient';
+    src: url('./assets/fonts/target/TarrgetGradient.woff2') format('woff2'),
+        url('./assets/fonts/target/TarrgetGradient.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tarrget Half-Tone';
+    src: url('./assets/fonts/target/TarrgetHalf-ToneItalic.woff2') format('woff2'),
+        url('./assets/fonts/target/TarrgetHalf-ToneItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tarrget Laser';
+    src: url('./assets/fonts/target/TarrgetLaserItalic.woff2') format('woff2'),
+        url('./assets/fonts/target/TarrgetLaserItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tarrget Engraved';
+    src: url('./assets/fonts/target/TarrgetEngravedItalic.woff2') format('woff2'),
+        url('./assets/fonts/target/TarrgetEngravedItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tarrget Expanded';
+    src: url('./assets/fonts/target/TarrgetExpanded.woff2') format('woff2'),
+        url('./assets/fonts/target/TarrgetExpanded.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tarrget Outline';
+    src: url('./assets/fonts/target/TarrgetOutlineItalic.woff2') format('woff2'),
+        url('./assets/fonts/target/TarrgetOutlineItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tarrget Engraved';
+    src: url('./assets/fonts/target/TarrgetEngraved.woff2') format('woff2'),
+        url('./assets/fonts/target/TarrgetEngraved.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tarrget';
+    src: url('./assets/fonts/target/Tarrget.woff2') format('woff2'),
+        url('./assets/fonts/target/Tarrget.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tarrget Platinum';
+    src: url('./assets/fonts/target/TarrgetPlatinumItalic.woff2') format('woff2'),
+        url('./assets/fonts/target/TarrgetPlatinumItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tarrget Platinum';
+    src: url('./assets/fonts/target/TarrgetPlatinum.woff2') format('woff2'),
+        url('./assets/fonts/target/TarrgetPlatinum.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
