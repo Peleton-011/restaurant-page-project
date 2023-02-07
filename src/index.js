@@ -11,8 +11,8 @@ const setup = () => {
     const main = document.createElement("main");
     const heroText = titleSVG(pageData.title);
 
-    document.body.appendChild(nav);
     document.body.appendChild(heroText);
+    document.body.appendChild(nav);
     document.body.appendChild(main);
 
     //Add buttons to switch between pages
@@ -24,8 +24,6 @@ const setup = () => {
     const stickyDistance = 80;
     // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
     function makeNavSticky() {
-        console.log(window.pageYOffset);
-        console.log(stickyDistance);
         if (window.pageYOffset >= stickyDistance) {
             nav.classList.add("sticky");
         } else {
@@ -134,17 +132,25 @@ const setup = () => {
         //Wrapping it all together
         svg.appendChild(filter);
 
-        svg.setAttribute("position", "absolute");
-        svg.setAttribute("visibility", "hidden");
-        svg.setAttribute("width", "100%");
-        svg.setAttribute("height", "100%");
-        svg.setAttribute("left", "0px");
-        svg.setAttribute("top", "0px");
+        const svgStyle = `
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+        `
+
+        svg.setAttribute("style", svgStyle);
+
         //The actual text to display
         const text = document.createElement("h1");
 
-        text.setAttribute("position", "relative");
-        text.setAttribute("filter", "url(#myFilter)");
+        const textStyle = `
+            position: relative;
+            filter: url(#myFilter);
+        `
+
+        text.setAttribute("style", textStyle);
 
         text.textContent = title;
         text.appendChild(svg);
