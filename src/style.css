@@ -23,6 +23,10 @@ nav {
     gap: 0;
 }
 
+nav > .active-nav-btn {
+    border-bottom: none;
+}
+
 nav > button:first-of-type {
     padding-left: 10vw;
 }
@@ -35,7 +39,7 @@ nav > button:last-of-type {
 
 nav > button {
     font-size: 1rem;
-  
+
     display: inline-block;
     cursor: pointer;
     text-decoration: none;
@@ -44,17 +48,18 @@ nav > button {
     border-left: none;
     padding: 0.25em 1em;
     /* border-radius: 0.25em; */
-  
+
     text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
-  
-    box-shadow: inset 0 0 0.5em 0 var(--neon-color), 0 0 0.5em 0 var(--neon-color);
-  
+
+    box-shadow: inset 0 0 0.5em 0 var(--neon-color),
+        0 0 0.5em 0 var(--neon-color);
+
     position: relative;
 
     background: var(--bg-color);
-  }
-  
-  nav > butt-on::before {
+}
+
+nav > butt-on::before {
     pointer-events: none;
     content: "";
     position: absolute;
@@ -63,13 +68,13 @@ nav > button {
     left: 0;
     width: 100%;
     height: 100%;
-  
+
     transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
     filter: blur(1em);
     opacity: 0.7;
-  }
-  
-  nav > button::after {
+}
+
+nav > button::after {
     content: "";
     position: absolute;
     top: 0;
@@ -81,24 +86,23 @@ nav > button {
     background-color: var(--neon-color);
     z-index: -1;
     transition: opacity 100ms linear;
-  }
-  
-  nav > button:hover,
-  nav > button:focus {
+}
+
+nav > button:hover,
+nav > button:active {
     color: var(--bg-color);
     background-color: var(--neon-color);
     text-shadow: none;
-  }
-  
-  nav > button:hover::before,
-  nav > button:focus::before {
+}
+
+nav > button:hover::before,
+nav > button:active::before {
     opacity: 1;
-  }
-  nav > button:hover::after,
-  nav > button:focus::after {
+}
+nav > button:hover::after,
+nav > button:active::after {
     opacity: 1;
-  }
-  
+}
 
 main {
     height: 90vh;

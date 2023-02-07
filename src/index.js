@@ -36,19 +36,31 @@ class Tab {
     }
 
     getScript(name) {
-        const script = () => {
+        const reDraw = () => {
             return import(`./pageData/${name}.js`).then((pageScript) => {
                 this.cleanCanvas();
                 pageScript.main(document.querySelector("main"));
             });
         };
 
-        return script;
+        const setActive = (e, name) => {
+            const btn = e.target;
+            const prev = document.querySelector(".active-nav-btn") || undefined;
+
+            if (prev) { prev.classList.remove("active-nav-btn"); };
+
+            btn.classList.add("active-nav-btn");
+        }
+
+        return (e) => {
+            reDraw();
+            setActive(e, name);
+        };
     }
 
     tabButton() {
         const script = this.getScript(this.page.script);
-        const tabButton = button(this.name, "tab", this.name, script);
+        const tabButton = button(this.name, "tab", `${this.name}-btn`, script);
         return tabButton;
     }
 
