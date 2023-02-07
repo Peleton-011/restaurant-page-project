@@ -38,21 +38,6 @@ const setup = () => {
         //Initial definitions
         const svg = document.createElement("svg");
 
-        const defs = document.createElement("defs");
-
-        //The styles on the text to display
-        const style = document.createElement("style");
-        style.setAttribute("type", "text/css");
-
-        style.innerHTML = `
-            <![CDATA[
-                .filtered {
-                    font-size: 12rem !important;
-                    filter: url(#myFilter);
-                }
-            ]]>
-        `;
-
         //The filter applied to the text
         const filter = document.createElement("filter");
         filter.id = "myFilter";
@@ -146,26 +131,25 @@ const setup = () => {
             return merge;
         }
 
-
-        //The actual text to display
-        const g = document.createElement("g");
-        g.classList.add("filtered");
-
-        const text = document.createElement("text");
-        text.setAttribute("x", "10");
-        text.setAttribute("y", "10");
-        text.textContent = title;
-
         //Wrapping it all together
-        g.appendChild(text);
+        svg.appendChild(filter);
 
-        defs.appendChild(style);
-        defs.appendChild(filter);
+        svg.setAttribute("position", "absolute");
+        svg.setAttribute("visibility", "hidden");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("left", "0px");
+        svg.setAttribute("top", "0px");
+        //The actual text to display
+        const text = document.createElement("h1");
 
-        svg.appendChild(defs);
-        svg.appendChild(g);
+        text.setAttribute("position", "relative");
+        text.setAttribute("filter", "url(#myFilter)");
 
-        return svg;
+        text.textContent = title;
+        text.appendChild(svg);
+
+        return text;
     }
 };
 
