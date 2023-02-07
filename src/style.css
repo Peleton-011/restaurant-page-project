@@ -7,6 +7,11 @@
 
 * {
     font-family: coolvetica;
+    color: var(--neon-color);
+}
+
+h1 {
+    filter: url(#myFilter);
 }
 
 body {

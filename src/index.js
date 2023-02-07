@@ -36,6 +36,9 @@ const setup = () => {
         //Initial definitions
         const svg = document.createElement("svg");
 
+        svg.setAttribute("xlmns", "http://www.w3.org/2000/svg");
+        svg.setAttribute("version", "1.1");
+
         //The filter applied to the text
         const filter = document.createElement("filter");
         filter.id = "myFilter";
@@ -43,18 +46,20 @@ const setup = () => {
         // Extrude, blacken, and cut out the text
         
         filter.appendChild(extrusion("SourceAlpha", "BEVEL_10"));
-        filter.appendChild(composite("BEVEL_10", "SourceAlpha", "out", "BEVEL_20"));
-        filter.appendChild(colorize("BEVEL_20", "#000000", "BEVEL_30"));
+        filter.appendChild(colorize("BEVEL_10", "#000000", "BEVEL_20"));
+        filter.appendChild(offset("4", "4", "BEVEL_20", "BEVEL_30"));
+        filter.appendChild(composite("BEVEL_30", "SourceAlpha", "out", "BEVEL_40"));
 
         //Transform, colorize, and cut out the text
 
-        filter.appendChild(offset("-4", "4", "BEVEL_30", "SHADOW_10"));
-        filter.appendChild(composite("SHADOW_10", "BEVEL_30", "out", "SHADOW_20"));
-        filter.appendChild(colorize("SHADOW_20", "#ff14bd", "SHADOW_30"));
+        filter.appendChild(extrusion("BEVEL_40", "SHADOW_10"));
+        filter.appendChild(colorize("SHADOW_10", "#FF14BD", "SHADOW_20"));
+        filter.appendChild(offset("-4", "4", "SHADOW_20", "SHADOW_30"));
+        filter.appendChild(composite("SHADOW_30", "BEVEL_40", "out", "SHADOW_40"));
 
         //Put it all together
 
-        filter.appendChild(merge("SourceGraphic", "BEVEL_30", "SHADOW_30"));
+        filter.appendChild(merge("FULL_EFFECT", "SourceGraphic", "BEVEL_40", "SHADOW_30"));
 
         //Helper functions
         function offset(x, y, input, output) {
@@ -68,18 +73,30 @@ const setup = () => {
         }
 
         function extrusion (input, output) { 
-            const extrusion = document.createElement("feConvolveMatrix");
+            const extrusion = document.createElement("g");
+            const dilate = document.createElement("feMorphology");
+
+            dilate.setAttribute("operator", "dilate");
+            dilate.setAttribute("radius", 4);
+
+            dilate.setAttribute("in", input);
+            dilate.setAttribute("result", `${input}_EXTRUSION_10`);
+
+            const matrix = document.createElement("feConvolveMatrix");
             
-            extrusion.setAttribute("order", "3");
-            extrusion.setAttribute("divisor", "1");
-            extrusion.setAttribute("kernelMatrix", `
+            matrix.setAttribute("order", "3,3");
+            matrix.setAttribute("divisor", "1");
+            matrix.setAttribute("kernelMatrix", `
                 1 0 0
                 0 1 0
                 0 0 1
                 `
                 );
-            extrusion.setAttribute("in", input);
-            extrusion.setAttribute("result", output);
+            matrix.setAttribute("in", `${input}_EXTRUSION_10`);
+            matrix.setAttribute("result", `${input}_EXTRUSION_20`);
+
+            extrusion.appendChild(dilate);
+            extrusion.appendChild(matrix);
 
             return extrusion;
         };
@@ -146,6 +163,7 @@ const setup = () => {
         const text = document.createElement("h1");
 
         const textStyle = `
+            font-size: 4rem;
             position: relative;
             filter: url(#myFilter);
         `
