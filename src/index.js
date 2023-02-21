@@ -253,7 +253,7 @@ const setup = () => {
 
 const addTabs = async (pageList) => {
     for (let i = 0; i < pageList.length; i++) {
-        const pageContent = await import(`./pageData/${pageList[i]}.json`);
+        const pageContent = pageList[i];
         const thisTab = new Tab(pageContent);
 
         tabs.push(thisTab);

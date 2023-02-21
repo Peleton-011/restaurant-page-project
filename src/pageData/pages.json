@@ -15,5 +15,22 @@
             "Expanded"
         ]
     },
-    "pageList": ["homepage", "menu", "about", "contact"]
+    "pageList": [
+        {
+            "title": "Home",
+            "script": "homepage"
+        },
+        {
+            "title": "Menu",
+            "script": "menu"
+        },
+        {
+            "title": "About",
+            "script": "about"
+        },
+        {
+            "title": "Contact",
+            "script": "contact"
+        }
+        ]
 }
