@@ -2,16 +2,19 @@ import _ from "lodash";
 import "./style.css";
 import "./fonts.css";
 import pageData from "./pageData/pages.json";
+import BEPIS from "presa-bepis";
 
 const tabs = [];
+
+const filterID = "myFilter";
 
 const setup = () => {
     //Add basic structure
     const nav = document.createElement("nav");
     const main = document.createElement("main");
-    const heroText = titleSVG(pageData.title);
+    const heroText = makeSVG(pageData.title);
 
-    document.body.appendChild(heroText);
+    document.body.innerHTML += heroText.outerHTML;
     document.body.appendChild(nav);
     document.body.appendChild(main);
 
@@ -32,7 +35,6 @@ const setup = () => {
     }
 
     function titleSVG(title) {
-
         //Initial definitions
         const svg = document.createElement("svg");
 
@@ -44,27 +46,33 @@ const setup = () => {
         filter.id = "myFilter";
 
         // Extrude, blacken, and cut out the text
-        
+
         filter.appendChild(extrusion("SourceAlpha", "BEVEL_10"));
         filter.appendChild(colorize("BEVEL_10", "#000000", "BEVEL_20"));
         filter.appendChild(offset("4", "4", "BEVEL_20", "BEVEL_30"));
-        filter.appendChild(composite("BEVEL_30", "SourceAlpha", "out", "BEVEL_40"));
+        filter.appendChild(
+            composite("BEVEL_30", "SourceAlpha", "out", "BEVEL_40")
+        );
 
         //Transform, colorize, and cut out the text
 
         filter.appendChild(extrusion("BEVEL_40", "SHADOW_10"));
         filter.appendChild(colorize("SHADOW_10", "#FF14BD", "SHADOW_20"));
         filter.appendChild(offset("-4", "4", "SHADOW_20", "SHADOW_30"));
-        filter.appendChild(composite("SHADOW_30", "BEVEL_40", "out", "SHADOW_40"));
+        filter.appendChild(
+            composite("SHADOW_30", "BEVEL_40", "out", "SHADOW_40")
+        );
 
         //Put it all together
 
-        filter.appendChild(merge("FULL_EFFECT", "SourceGraphic", "BEVEL_40", "SHADOW_30"));
+        filter.appendChild(
+            merge("FULL_EFFECT", "SourceGraphic", "BEVEL_40", "SHADOW_30")
+        );
 
         //Helper functions
         function offset(x, y, input, output) {
             const offset = document.createElement("feOffset");
-            
+
             offset.setAttribute("dx", x);
             offset.setAttribute("dy", y);
             offset.setAttribute("in", input);
@@ -72,7 +80,7 @@ const setup = () => {
             return offset;
         }
 
-        function extrusion (input, output) { 
+        function extrusion(input, output) {
             const extrusion = document.createElement("g");
             const dilate = document.createElement("feMorphology");
 
@@ -83,15 +91,17 @@ const setup = () => {
             dilate.setAttribute("result", `${input}_EXTRUSION_10`);
 
             const matrix = document.createElement("feConvolveMatrix");
-            
+
             matrix.setAttribute("order", "3,3");
             matrix.setAttribute("divisor", "1");
-            matrix.setAttribute("kernelMatrix", `
+            matrix.setAttribute(
+                "kernelMatrix",
+                `
                 1 0 0
                 0 1 0
                 0 0 1
                 `
-                );
+            );
             matrix.setAttribute("in", `${input}_EXTRUSION_10`);
             matrix.setAttribute("result", `${input}_EXTRUSION_20`);
 
@@ -99,9 +109,9 @@ const setup = () => {
             extrusion.appendChild(matrix);
 
             return extrusion;
-        };
+        }
 
-        function composite (input1, input2, op, output) {
+        function composite(input1, input2, op, output) {
             const composite = document.createElement("feComposite");
 
             composite.setAttribute("operator", op);
@@ -112,7 +122,7 @@ const setup = () => {
             return composite;
         }
 
-        function colorize (input, color, output) {
+        function colorize(input, color, output) {
             const flood = document.createElement("feFlood");
 
             flood.setAttribute("flood-color", color);
@@ -123,10 +133,10 @@ const setup = () => {
             g.appendChild(flood);
             g.appendChild(composite(color.substring(1), input, "in", output));
 
-            return g; 
+            return g;
         }
 
-        function merge (output) {
+        function merge(output) {
             const args = Array.from(arguments);
             const merge = document.createElement("feMerge");
 
@@ -146,34 +156,98 @@ const setup = () => {
             return merge;
         }
 
-        //Wrapping it all together
-        svg.appendChild(filter);
-
-        const svgStyle = `
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0;
-        `
-
-        svg.setAttribute("style", svgStyle);
-
         //The actual text to display
-        const text = document.createElement("h1");
+        const text = document.createElement("text");
 
         const textStyle = `
-            font-size: 4rem;
-            position: relative;
+            font-size: 8rem;
+            display: absolute;
+            top: 0;
+            left: 0;
             filter: url(#myFilter);
-        `
+        `;
 
         text.setAttribute("style", textStyle);
 
         text.textContent = title;
-        text.appendChild(svg);
 
-        return text;
+        //Wrapping it all together
+        const defs = document.createElement("defs");
+
+        defs.appendChild(filter);
+        svg.appendChild(defs);
+        svg.appendChild(text);
+
+        const svgStyle = `
+            position: relative;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+        `;
+
+        svg.setAttribute("style", svgStyle);
+
+        return svg;
+    }
+
+    function makeSVG(title) {
+        const filterSVG = new BEPIS(null, null, title);
+        filterSVG.filter = filterID;
+        const filter = filterSVG.filter;
+
+        const shadow = 4;
+
+        //colored source
+        const cols = ["#000", "#FF14BD", "#BCED09", "#2B2D42", "#31202b"];
+        const color1 = cols[4];
+        const color2 = cols[1];
+        const coloredSource = `COLORED_SOURCE_${color1}`;
+
+        filter.colorize("SourceAlpha", coloredSource, color1, 1);
+
+        //Black extrusion
+        const offset = `OFFSET_${filter.operationID}`;
+        const finalOffset = `OFFSET_${filter.operationID}`;
+        const composite = `COMPOSITE_${filter.operationID}`;
+
+        filter.extrude(null, null, shadow, ["100", "010", "001"]);
+        filter.offset(null, offset, shadow / 2, shadow / 2);
+        filter.composite(offset, "SourceAlpha", finalOffset, "out");
+        filter.colorize(finalOffset, composite, color1, 1);
+
+        //Purple extrusion
+        const purpleShadow = `PURPLE_SHADOW_${filter.operationID}`;
+
+        filter.dropShadow(composite, purpleShadow, -2, 2, 3, color2, 0.5);
+
+        //White outline for the text
+        const thinText = `THIN_TEXT_${filter.operationID}`;
+        const wideText = `WIDE_TEXT_${filter.operationID}`;
+        const finalWideText = `WIDE_TEXT_${filter.operationID}`;
+        const outline = `OUTLINE_${filter.operationID}`;
+
+        filter.changeWidth("SourceAlpha", thinText, "erode", 1);
+
+        filter.changeWidth("SourceAlpha", wideText, "dilate", 1);
+        filter.colorize(wideText, finalWideText, color2, 1);
+
+        filter.composite(finalWideText, thinText, outline, "out");
+
+        filter.merge([purpleShadow, coloredSource, composite, outline], null);
+
+        //Styling
+
+        filterSVG.style = `
+        position: relative;
+        visibility: visible;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        `;
+
+        return filterSVG.elem;
     }
 };
 

@@ -2,7 +2,7 @@
 
 :root {
     --neon-color: hsl(317, 100%, 54%);
-    --bg-color: hsl(323, 21%, 16%);
+    --bg-color: hsl(321, 21%, 16%);
 }
 
 * {
@@ -139,4 +139,12 @@ nav > button:active::after {
 
 main {
     min-height: 100rem;
+}
+
+text {
+    font-size: 8rem;
+    position: relative ;
+    bottom: 0 ;
+    left: 1rem;
+    transform: translate(2rem, 7rem);
 }
