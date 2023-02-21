@@ -3,7 +3,7 @@ function component() {
     const btn = document.createElement("button");
 
     // Lodash, now imported by this script
-    element.innerHTML = "Test 2";
+    element.innerHTML = "Menu page";
 
     element.appendChild(btn);
 
