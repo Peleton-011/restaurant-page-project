@@ -38,6 +38,7 @@ const setup = () => {
         const filterSVG = new BEPIS(null, null, title);
         filterSVG.filter = filterID;
         const filter = filterSVG.filter;
+        const text = filterSVG.text("Paradise 11", "", "");
 
         const shadow = 4;
 
@@ -90,7 +91,14 @@ const setup = () => {
         top: 0;
         `;
 
-        return filterSVG.elem;
+        // vv Choppy. To-Do: Reimplement this in BEPIS
+
+        const result = filterSVG.elem;
+        text.style = `filter: url(#myFilter);`;
+        const finalText = text.elem;
+
+        result.appendChild(finalText); 
+        return result;
     }
 };
 
