@@ -141,7 +141,8 @@ nav > button:active::after {
 }
 
 main {
-    height: auto;    
+    min-height: 100%; 
+    width: 100%;   
     margin: 0 1rem;
     padding: 1rem;
 }
