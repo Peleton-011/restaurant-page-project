@@ -1,3 +1,6 @@
+import {Style, StylePack} from "../components/cssGenerator";
+import {} from "../components/neonShadow";
+
 class tvScreen {
     #bgImage;
     #width;
