@@ -73,19 +73,18 @@ class Box extends StylePack {
 
         this.#secondaryColor = options.secondaryColor || "hsl(321, 21%, 16%)";
         newOptions.secondaryColor = this.#secondaryColor;
-        
-        newOptions.selector = options.selector || ".neon-box";
-        
-        this.shadow = new Shadow(newOptions);
 
+        newOptions.selector = options.selector || ".neon-box";
+
+        this.shadow = new Shadow(newOptions);
 
         newOptions.defaultSettings = {
             border: `${this.#neonColor} 0.125em solid`,
             padding: `0.25em 1em`,
             "border-radius": `0.25em`,
-            "box-shadow": `inset 0 0 2em 0.5em ${this.#neonColor} , 0 0 2em 0.5em ${
+            "box-shadow": `inset 0 0 2em 0.5em ${
                 this.#neonColor
-            }`,
+            } , 0 0 2em 0.5em ${this.#neonColor}`,
             background: `${this.#secondaryColor}`,
         };
 

@@ -10,7 +10,7 @@ function component() {
     // Lodash, now imported by this script
     element.innerHTML = "Menu page";
 
-    const screen = new tvScreen(bg)
+    const screen = new tvScreen(bg);
 
     element.appendChild(screen.getDomObject());
 

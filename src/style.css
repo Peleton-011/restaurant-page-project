@@ -32,7 +32,6 @@ header {
 
     height: calc(25vh - 4rem);
     width: 100%;
-
 }
 
 nav {
@@ -134,23 +133,23 @@ nav > button:active::after {
     top: 0;
     width: 100%;
 }
-  
+
 /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
 .sticky + main {
     padding-top: 60px;
 }
 
 main {
-    min-height: 100%; 
-    width: 100%;   
+    min-height: 100%;
+    width: 100%;
     margin: 0 1rem;
     padding: 1rem;
 }
 
 text {
     font-size: 8rem;
-    position: relative ;
-    bottom: 0 ;
+    position: relative;
+    bottom: 0;
     left: 1rem;
     transform: translate(2rem, 7rem);
 }
@@ -160,7 +159,6 @@ text {
 }
 
 @keyframes tvBarAnimation {
-
     from {
         background-position: 0% 0%;
     }
@@ -168,5 +166,4 @@ text {
     to {
         background-position: 0% -100%;
     }
-    
 }

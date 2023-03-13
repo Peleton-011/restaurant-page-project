@@ -3,8 +3,8 @@
     "fonts": {
         "name": "Tarrget",
         "variations": [
-            "3D", 
-            "Academy", 
+            "3D",
+            "Academy",
             "Gradient",
             "Leftalic",
             "Chrome",
@@ -32,5 +32,5 @@
             "title": "Contact",
             "script": "contact"
         }
-        ]
+    ]
 }

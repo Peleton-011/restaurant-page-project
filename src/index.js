@@ -97,7 +97,7 @@ const setup = () => {
         text.style = `filter: url(#myFilter);`;
         const finalText = text.elem;
 
-        result.appendChild(finalText); 
+        result.appendChild(finalText);
         return result;
     }
 };
