@@ -23,7 +23,7 @@ class Style {
     }
 }
 
-class StylePack {
+class StylePack extends Style {
     styles = [];
 
     #styleSettings = {};
@@ -32,20 +32,20 @@ class StylePack {
     constructor(options) {
         this.#selector = options.selector;
 
-        this.styles.push(Style.newSelector(this.#selector));
+        this.styles.push(super.newSelector(this.#selector));
 
         this.addSettings(options.defaultSettings);
     }
 
-    addSetting(attr, value) {
+    addSetting(attr, value, styleID = 0) {
         this.#styleSettings[attr] = value;
-        this.style.addAttribute(attr, settings[attr]);
+        this.styles[styleID].addAttribute(attr, settings[attr]);
     }
 
-    addSettings(settings) {
+    addSettings(settings, styleID = 0) {
         for (let attr in settings) {
             this.#styleSettings[attr] = settings[attr];
-            this.style.addAttribute(attr, settings[attr]);
+            this.styles[styleID].addAttribute(attr, settings[attr]);
         }
     }
 
@@ -53,8 +53,17 @@ class StylePack {
         return this.#styleSettings;
     }
 
-    getStyle() {
-        return this.style.getStyle();
+    getStyle(styleID) {
+
+        if (typeof styleID === "number") {
+            return this.styles[styleID].print();
+        }
+
+        let style = "";
+        for (let i = 0; i < this.styles.length; i++) {
+            style += this.styles[i].print();
+        }
+        return style;
     }
 }
 
