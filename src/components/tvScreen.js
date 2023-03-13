@@ -25,7 +25,8 @@ class tvScreen {
 
         let style = "";
         // style += `background-color: ${this.#spaceColor};`
-        style += `width: ${this.#width}rem; height: ${this.#height}rem; `;
+        style += `width: ${this.#width}rem ; height: ${this.#height}rem; `;
+        style += `border: ${this.#barWidthPx*2}px solid ${this.#barColor};`
         style += `border-radius: 1rem; `; // To-Do: Add way to set it
         style += `position: absolute; `;
         style += `overflow: hidden; `;
