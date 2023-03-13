@@ -10,7 +10,7 @@ class Style {
         return newSelector;
     }
 
-    getStyle () {
+    getStyleTag () {
         let style = "<style>"
 
         for (let i = 0; i < this.#selectors.length; i++) {
@@ -29,10 +29,10 @@ class StylePack {
     #styleSettings = {};
     #selector;
 
-    constructor(options) {
+    constructor(options, styleObj) {
         this.#selector = options.selector;
 
-        this.style = Style.newSelector(this.#selector);
+        this.style = styleObj.newSelector(this.#selector);
 
         this.addSettings(options.defaultSettings);
     }
@@ -63,6 +63,7 @@ class Selector {
 
     #attributes = [];
     #selector = "";
+    
     constructor (selector) {
         this.#selector = selector;
     }
