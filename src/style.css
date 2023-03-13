@@ -154,3 +154,19 @@ text {
     left: 1rem;
     transform: translate(2rem, 7rem);
 }
+
+#tvBarOverlay {
+    animation: 10s tvBarAnimation infinite forwards;
+}
+
+@keyframes tvBarAnimation {
+
+    from {
+        background-position: 0% 0%;
+    }
+
+    to {
+        background-position: 0% -100%;
+    }
+    
+}
