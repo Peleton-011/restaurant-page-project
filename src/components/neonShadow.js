@@ -29,6 +29,38 @@ import { Style, StylePack } from "./cssGenerator";
 //     opacity: 1;
 // }
 
+class Button extends StylePack {
+    #neonColor;
+    #secondaryColor;
+    shadow;
+
+    constructor(options) {
+        const newOptions = Object.assign({}, options);
+
+        this.#neonColor = options.neonColor || "hsl(317, 100%, 54%)";
+        newOptions.neonColor = this.#neonColor;
+
+        this.#secondaryColor = options.secondaryColor || "hsl(321, 21%, 16%)";
+        newOptions.secondaryColor = this.#secondaryColor;
+
+        newOptions.selector = options.selector || ".neon-button";
+
+        this.shadow = new Shadow(newOptions);
+
+        newOptions.defaultSettings = {
+            border: `${this.#neonColor} 0.125em solid`,
+            padding: `0.25em 1em`,
+            "border-radius": `0.25em`,
+            "box-shadow": `inset 0 0 2em 0.5em ${
+                this.#neonColor
+            } , 0 0 2em 0.5em ${this.#neonColor}`,
+            background: `${this.#secondaryColor}`,
+        };
+
+        super(newOptions);
+    }
+}
+
 //Only "necessary" options are "neonColor" and "secondaryColor". Optional "selector"
 class Shadow extends StylePack {
     #neonColor;
