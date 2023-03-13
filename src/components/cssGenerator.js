@@ -24,15 +24,15 @@ class Style {
 }
 
 class StylePack {
-    style;
+    styles = [];
 
     #styleSettings = {};
     #selector;
 
-    constructor(options, styleObj) {
+    constructor(options) {
         this.#selector = options.selector;
 
-        this.style = styleObj.newSelector(this.#selector);
+        this.styles.push(Style.newSelector(this.#selector));
 
         this.addSettings(options.defaultSettings);
     }
@@ -63,7 +63,7 @@ class Selector {
 
     #attributes = [];
     #selector = "";
-    
+
     constructor (selector) {
         this.#selector = selector;
     }
