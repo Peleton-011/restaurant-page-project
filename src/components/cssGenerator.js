@@ -46,6 +46,10 @@ class StylePack extends Style {
         }
     }
 
+    getSelector (styleID = 0) {
+        return this.styles[styleID].getSelector();
+    }
+
     getSettings(styleID = 0) {
         return this.styles[styleID].print();
     }
@@ -77,6 +81,10 @@ class Selector {
     addAttribute (attr, value) {
         const str = `${attr}: ${value};`;
         this.#attributes.push(str);
+    }
+
+    getSelector () {
+        return this.#selector;
     }
 
     print () {
