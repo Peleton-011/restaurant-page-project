@@ -4,8 +4,8 @@ import "./fonts.css";
 import pageData from "./pageData/pages.json";
 import BEPIS from "presa-bepis";
 
-import {Style, StylePack} from "../components/cssGenerator";
-import {} from "../components/neonShadow";
+import {Style, StylePack} from "./components/cssGenerator";
+import {Shadow, Box, Button} from "./components/neonShadow";
 
 
 const tabs = [];
