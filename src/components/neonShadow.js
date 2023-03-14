@@ -35,6 +35,7 @@ class Button extends StylePack {
     #neonColor;
     #secondaryColor;
     shadow;
+    box;
 
     constructor(options) {
         const newOptions = Object.assign({}, options);
@@ -48,6 +49,7 @@ class Button extends StylePack {
         newOptions.selector = options.selector || ".neon-button";
 
         this.shadow = new Shadow(newOptions);
+        this.box = new Box(newOptions);
 
         newOptions.defaultSettings = {
             border: `${this.#neonColor} 0.125em solid`,
