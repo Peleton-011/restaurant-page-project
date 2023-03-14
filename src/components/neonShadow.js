@@ -29,6 +29,8 @@ import { Style, StylePack } from "./cssGenerator";
 //     opacity: 1;
 // }
 
+// To-Do: Actually implement Button
+
 class Button extends StylePack {
     #neonColor;
     #secondaryColor;
@@ -123,3 +125,6 @@ class Box extends StylePack {
         super(newOptions);
     }
 }
+
+
+export {Shadow, Box, Button};

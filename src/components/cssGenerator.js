@@ -10,6 +10,10 @@ class Style {
         return newSelector;
     }
 
+    addSelectors (selectors) {
+        this.#selectors.push(...selectors);
+    }
+
     getStyleTag () {
         let style = "<style>"
 

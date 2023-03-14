@@ -1,5 +1,5 @@
 import {Style, StylePack} from "../components/cssGenerator";
-import {} from "../components/neonShadow";
+import {Shadow, Box, Button} from "../components/neonShadow";
 
 class tvScreen {
     #bgImage;
@@ -9,6 +9,8 @@ class tvScreen {
     #barWidthPx;
     #spaceColor;
     #spaceWidthPx;
+
+    #style = new Style();
 
     constructor(
         bgImage,
