@@ -26,7 +26,6 @@ class Style {
 class StylePack extends Style {
     styles = [];
 
-    #styleSettings = {};
     #selector;
 
     constructor(options) {
@@ -38,19 +37,17 @@ class StylePack extends Style {
     }
 
     addSetting(attr, value, styleID = 0) {
-        this.#styleSettings[attr] = value;
         this.styles[styleID].addAttribute(attr, settings[attr]);
     }
 
     addSettings(settings, styleID = 0) {
         for (let attr in settings) {
-            this.#styleSettings[attr] = settings[attr];
             this.styles[styleID].addAttribute(attr, settings[attr]);
         }
     }
 
-    getSettings() {
-        return this.#styleSettings;
+    getSettings(styleID = 0) {
+        return this.styles[styleID].print();
     }
 
     getStyle(styleID) {
