@@ -104,4 +104,38 @@ class tvScreen {
     }
 }
 
+/*Bevel code for div.container :
+
+// Demo Styling 
+body {
+    background: #333333;
+    padding: 2rem;
+  }
+//   CSS 
+  .container {
+    padding: 1rem 2rem;
+    color: #ffffff;
+    background-color: transparent;
+    background-image: linear-gradient(180deg, #ffdc00, #ffdc00)
+      ,linear-gradient(225deg, #ffdc00, #ffdc00)
+      ,linear-gradient(0deg, #ffdc00, #ffdc00)
+      ,linear-gradient(90deg, #ffdc00, #ffdc00)
+      ,linear-gradient(135deg, transparent 9px, #ffdc00 10px, #ffdc00 12px, transparent 12px)
+      ;
+    background-position: top right
+      ,top right
+      ,bottom left
+      ,bottom left
+      ,top left
+      ;
+    background-size: calc(100% - 15px) 2px
+      ,2px 100%
+      ,100% 2px
+      ,2px calc(100% - 15px)
+      ,15px 15px
+      ;
+    background-repeat: no-repeat;
+  }
+*/  
+
 export { tvScreen };
