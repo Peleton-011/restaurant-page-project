@@ -30,18 +30,15 @@ class Style {
 class StylePack extends Style {
     styles = [];
 
-    #selector;
-
     constructor(options) {
-        this.#selector = options.selector;
-
-        this.styles.push(super.newSelector(this.#selector));
-
-        this.addSettings(options.defaultSettings);
+        this.addStyle(options);
     }
 
-    addSetting(attr, value, styleID = 0) {
-        this.styles[styleID].addAttribute(attr, settings[attr]);
+    addStyle(options) {
+        this.styles.push(super.newSelector(options.selector));
+
+        this.addSettings(options.defaultSettings);
+        return this.styles.length - 1;
     }
 
     addSettings(settings, styleID = 0) {
@@ -50,8 +47,8 @@ class StylePack extends Style {
         }
     }
 
-    getSelector (styleID = 0) {
-        return this.styles[styleID].getSelector();
+    getSelectorStr (styleID = 0) {
+        return this.styles[styleID].getSelectorStr();
     }
 
     getSettings(styleID = 0) {
@@ -87,7 +84,7 @@ class Selector {
         this.#attributes.push(str);
     }
 
-    getSelector () {
+    getSelectorStr () {
         return this.#selector;
     }
 
