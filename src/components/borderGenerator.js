@@ -1,6 +1,4 @@
-
 class BorderStyle {
-
     #width = "100%";
     #height = "100%";
 
@@ -12,8 +10,9 @@ class BorderStyle {
 
     #currentPos;
 
-    constructor (options) {
+    #lines = [];
 
+    constructor(options) {
         this.#width = options.width || this.#width;
         this.#height = options.height || this.#height;
 
@@ -26,30 +25,53 @@ class BorderStyle {
         this.#currentPos = this.#startPos;
     }
 
+    // parseInput(d10px 5px )
+    #parseInput(rawInputIn) {
+        const parsed = [];
+        let rawInput = rawInputIn;
+        let currCommand;
 
-    #lineTo (targetPos, bevel, lineWidth, color) {
-        const hasBevel = !!bevel;
+        while (rawInput) {
+            [currCommand, rawInput] = this.#getCurrCommand(rawInput);
+        }
+    }
 
-        return new Line ({
-            start: this.#currentPos,
+    #parseCommand(rawCommand) {
+        const parsed = rawCommand.split(" ");
+        return parsed;
+    }
+
+    #getCurrCommand(input) {
+        const nextCmdIndex = input.match(/[udlr][0-9]/i).index;
+
+        const currCommand = input.substring(0, nextCmdIndex);
+
+        input = input.substring(nextCmdIndex);
+
+        return [currCommand, input];
+    }
+
+    #newLine(targetPos, currPos, lineWidth, color) {
+        const line = new Line({
+            start: currPos,
             end: targetPos,
             width: lineWidth || this.#lineWidth,
             color: color || this.#color,
             bg: this.#bg || this.#bg,
-        })
+        });
 
+        this.#lines.push(line);
     }
 }
 
 class Line {
-
     start;
     end;
     width;
     color;
     bg;
 
-    constructor (options) {
+    constructor(options) {
         this.start = options.start;
         this.end = options.end;
         this.width = options.width;
@@ -63,7 +85,7 @@ const borderOptions = {
     height: "16rem",
     start: ["0rem", "0rem"],
     lineWidth: "2px",
-}
+};
 
 const lineOptions = {
     start: ["0", "0"],
@@ -71,4 +93,4 @@ const lineOptions = {
     width: "2px",
     color: "#000000",
     bg: "#000000",
-}
+};
