@@ -25,6 +25,10 @@ class BorderStyle {
         this.#currentPos = this.#startPos;
     }
 
+    #generateCss(commandArray) {
+        //Make the css for the specified border
+    }
+
     // parseInput(d10px 5px )
     #parseInput(rawInputIn) {
         const parsed = [];
