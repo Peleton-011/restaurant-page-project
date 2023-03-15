@@ -33,7 +33,13 @@ class BorderStyle {
 
         while (rawInput) {
             [currCommand, rawInput] = this.#getCurrCommand(rawInput);
+
+            const command = this.#parseCommand(currCommand);
+
+            parsed.push(command);
         }
+
+        return parsed;
     }
 
     #parseCommand(rawCommand) {
