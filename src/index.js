@@ -111,6 +111,8 @@ const addTabs = async (pageList) => {
 
         document.querySelector("nav").appendChild(thisTab.tabButton());
     }
+
+    Tab.prototype.getScript(tabs[0].page.script)({target: document.querySelector(".tab")})
 };
 
 class Tab {
