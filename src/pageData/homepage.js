@@ -6,21 +6,28 @@ function component() {
 
 	element.style.backgroundImage = `url(${restaurantPic})`;
 
-	const header = document.createElement("h2");
+
+    const card = document.createElement("section");
+    card.className = "img-card";
+
+	const title = document.createElement("h2");
 
 
-	header.innerHTML = `The perfect stop in all of Space Highway 
-        <span style="filter: hue-rotate(-30deg)">011</span>
-         - 
-        <span style="filter: hue-rotate(-30deg)">\u00A713</span>`;
-    header.className = "glowy-text";
-	element.appendChild(header);
+	title.innerHTML = `The best stop in all of Spaceway
+        X - <span style="filter: hue-rotate(-30deg)">\u00A713</span>`;
+    title.className = "glowy-text";
+	card.appendChild(title);
 
     //______
 
-    const desc = document.createElement("article");
+    const desc = document.createElement("p");
+    desc.className = "text-shadow";
 
-    desc.innerHTML = ``
+    desc.innerHTML = `Testy test for testing purposes`
+
+    card.appendChild(desc);
+
+    element.appendChild(card);
 
 	return element;
 }
