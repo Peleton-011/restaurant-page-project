@@ -76,7 +76,7 @@ class tvScreen {
 
         style += `width: 100%; height: 100%;`;
         style += `background-image: url(${this.#bgImage}); `;
-        style += `position: absolute; top: 0px; left: 0px;`;
+        style += `position: relative; top: 0px; left: 0px;`;
         style += `z-index: 1;`;
 
         image.setAttribute("style", style);

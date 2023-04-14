@@ -14,6 +14,10 @@ h1 {
     filter: url(#myFilter);
 }
 
+h2 {
+    font-size: 3rem;
+}
+
 body {
     min-height: 100vh;
 
