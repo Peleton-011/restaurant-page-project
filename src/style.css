@@ -9,14 +9,23 @@
     font-family: coolvetica;
     color: var(--neon-color);
     margin: 0px;
+    font-size: 1.1rem;
 }
 
 h1 {
     filter: url(#myFilter);
 }
 
+section > h2 {
+    padding: 1rem 0px;
+}
+
 h2 {
     font-size: 3rem;
+}
+
+span {
+    font-size: inherit;
 }
 
 .glowy-text {
@@ -24,7 +33,7 @@ h2 {
 }
 
 .text-shadow {
-    text-shadow: 0 0 0.9em var(--bg-color);
+    text-shadow: 0 0 0.6em #000;
 }
 
 .img-card {
@@ -79,7 +88,6 @@ nav > button:last-of-type {
 }
 
 nav > button {
-    font-size: 1.25rem;
 
     display: inline-block;
     cursor: pointer;
