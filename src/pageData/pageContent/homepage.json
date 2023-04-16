@@ -1,6 +1,6 @@
 {
 	"bgImgSection": {
-        "img": "restaurant-img.jpeg",
+		"img": "restaurant-img.jpeg",
 		"card": {
 			"title": {
 				"en": "The Best Stop in all of Spaceway X - <span style=\"filter: hue-rotate(-30deg)\">\u00A713</span>",
@@ -26,9 +26,30 @@
 			}
 		}
 	},
-    "modals": [
-        {
-            
-        }
-    ]
+	"modals": [
+		{
+			"imgOnLeft": true,
+			"img": "city-street.jpeg",
+			"card": {
+				"title": {
+					"en": "test",
+					"jp": "試練"
+				},
+				"desc": [
+					{
+						"en": "test 2",
+						"jp": "試練 2"
+					},
+					{
+						"en": "test 3",
+						"jp": "試練 3"
+					}
+				],
+				"cto": {
+					"en": "cto here",
+					"jp": "cto 試練"
+				}
+			}
+		}
+	]
 }

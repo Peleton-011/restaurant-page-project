@@ -104,9 +104,20 @@ async function bgImgSection({ callToAction, content }) {
 	return page;
 }
 
-function modal({ pic }) {}
+async function modal({ callToAction, modalData }) {
+	const pic = await getImage(modalData.img);
+	const img = document.createElement("img");
+	img.src = pic; 
 
-async function getImage (name) {
+	const cardElem = card({
+		callToAction,
+		cardData: modalData.card,
+	});
+
+	return img;
+}
+
+async function getImage(name) {
 	const img = await import(`../assets/images/homepage/${name}`);
 	// console.log(JSON.stringify(img.default, null, 2));
 	return img.default;
@@ -127,7 +138,20 @@ async function main({ target: parent, tabs }) {
 		})
 	);
 
-	parent.appendChild(modal({ content, pic: "streetPic" }));
+	const modals = document.createElement("section");
+
+	for (let i = 0; i < content.modals.length; i++) {
+		const modalData = content.modals[i];
+		modals.appendChild(
+			await modal({
+				callToAction: () => console.log("testy log! c:"),
+				modalData,
+			})
+		);
+		
+	}
+
+	parent.appendChild(modals);
 }
 
 export { main };
