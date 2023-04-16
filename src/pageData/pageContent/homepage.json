@@ -1,0 +1,26 @@
+{
+    "card": {
+        "title": {
+            "en": "The Best Stop in all of Spaceway X - <span style=\"filter: hue-rotate(-30deg)\">\u00A713</span>",
+            "jp": "スペースウェイX - <span style=\"filter: hue-rotate(-30deg)\">\u00A713 </span>のベストストップ"
+        },
+        "desc": [
+            {
+                "en": "Hydrogen-3 running out?",
+                "jp": "水素3が不足する？"
+            },
+            {
+                "en": "Need a nice meal to take a breather?",
+                "jp": "ほっと一息つくのに美味しい食事が必要？"
+            },
+            {
+                "en": "Want a drink while you wait for your FTL drive to cool down?",
+                "jp": "光より速いドライブが冷めるのを待つ間、飲み物はいかがですか？"
+            }
+        ],
+        "cto": {
+            "en": "Make a Reservation!",
+            "jp": "を予約してください！"
+        }
+    }
+}

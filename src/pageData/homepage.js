@@ -1,59 +1,53 @@
 import restaurantPic from "../assets/images/restaurant-img.jpeg";
 
-function component({ tabs }) {
-	const page = document.createElement("div");
-	page.className = "container bg-img";
+import content from "./pageContent/homepage.json";
 
-	page.style.backgroundImage = `url(${restaurantPic})`;
+function makeHeader(title) {
+	const titles = document.createElement("hgroup");
+	const en = document.createElement("h2");
+
+	en.innerHTML = title.en;
+	en.className = "glowy-text";
+	titles.appendChild(en);
+
+	const jp = document.createElement("h2");
+
+	jp.innerHTML = title.jp;
+	jp.className = "glowy-text";
+	titles.appendChild(jp);
+
+	return titles;
+}
+
+function card({ callToAction }) {
+	const cardData = content.card;
 
 	const card = document.createElement("section");
 	card.className = "img-card";
 
 	//Titles for the card over image
-
-	const titles = document.createElement("hgroup");
-
-	const title = document.createElement("h2");
-
-	title.innerHTML = `The Best Stop in all of Spaceway
-        X - <span style="filter: hue-rotate(-30deg)">\u00A713</span>`;
-	title.className = "glowy-text";
-	titles.appendChild(title);
-
-	const japTitle = document.createElement("h2");
-
-	japTitle.innerHTML = `スペースウェイX - <span style="filter: hue-rotate(-30deg)">\u00A713 </span>のベストストップ`;
-	japTitle.className = "glowy-text";
-	titles.appendChild(japTitle);
-
-	card.appendChild(titles);
+	const title = makeHeader(cardData.title)
+	card.appendChild(title);
 
 	//______
-
-	const goToContactPage = () => {
-		const contactIndex = tabs.findIndex(tab => tab.name === "Contact");
-		tabs[contactIndex].script({
-			target: document.getElementById("Contact-btn"),
-		});
-	};
 
 	const desc = document.createElement("p");
 	desc.className = "text-shadow";
 
 	desc.innerHTML = `
-    Hydrogen-3 running out?<br>
-	<span class="jap-text">水素3が不足する？</span><br><br>
-    Need a nice meal to take a breather?<br>
-	<span class="jap-text">ほっと一息つくのに美味しい食事が必要？</span><br><br>
-    Want a drink while you wait for your FTL drive to cool down?<br>
-	<span class="jap-text">光より速いドライブが冷めるのを待つ間、飲み物はいかがですか？</span><br><br>
+    <br>
+	<span class="jap-text"></span><br><br>
+    <br>
+	<span class="jap-text"></span><br><br>
+    <br>
+	<span class="jap-text"></span><br><br>
     	<strong>
 			<button class="link">	
-				<em class="highlight">Make a Reservation!</em> 
+				<em class="highlight"></em> 
 			</button>	
 			&nbsp;&nbsp;|&nbsp;&nbsp;
 			<button class="link">	
-				<span class="jap-text highlight">を予約してください！</span>
+				<span class="jap-text highlight"></span>
 			</button>	
 		</strong>
 	<br><br>
@@ -64,16 +58,33 @@ function component({ tabs }) {
 	card.appendChild(desc);
 
 	card.querySelectorAll("button.link").forEach((btn) => {
-		btn.addEventListener("click", goToContactPage);
+		btn.addEventListener("click", callToAction);
 	});
 
-	page.appendChild(card);
+	return card;
+}
+
+function bgImgSection({ callToAction }) {
+	const page = document.createElement("div");
+	page.className = "container bg-img";
+
+	page.style.backgroundImage = `url(${restaurantPic})`;
+
+	const cardElem = card({ callToAction });
+
+	page.appendChild(cardElem);
 
 	return page;
 }
 
 function main({ target: parent, tabs }) {
-	parent.appendChild(component({ tabs }));
+	const goToContactPage = () => {
+		const contactIndex = tabs.findIndex((tab) => tab.name === "Contact");
+		tabs[contactIndex].script({
+			target: document.getElementById("Contact-btn"),
+		});
+	};
+	parent.appendChild(bgImgSection({ callToAction: goToContactPage }));
 }
 
 export { main };
