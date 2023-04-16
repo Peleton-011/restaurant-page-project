@@ -1,36 +1,36 @@
 {
-    "title": "Paradise 11",
-    "fonts": {
-        "name": "Tarrget",
-        "variations": [
-            "3D",
-            "Academy",
-            "Gradient",
-            "Leftalic",
-            "Chrome",
-            "Condensed",
-            "Laser",
-            "Outline",
-            "Half-Tone",
-            "Expanded"
-        ]
-    },
-    "pageList": [
-        {
-            "title": "Home",
-            "script": "homepage"
-        },
-        {
-            "title": "Menu",
-            "script": "menu"
-        },
-        {
-            "title": "About",
-            "script": "about"
-        },
-        {
-            "title": "Contact",
-            "script": "contact"
-        }
-    ]
+	"title": "Paradise 11",
+	"fonts": {
+		"name": "Tarrget",
+		"variations": [
+			"3D",
+			"Academy",
+			"Gradient",
+			"Leftalic",
+			"Chrome",
+			"Condensed",
+			"Laser",
+			"Outline",
+			"Half-Tone",
+			"Expanded"
+		]
+	},
+	"pageList": [
+		{
+			"title": "Home",
+			"script": "homepage"
+		},
+		{
+			"title": "Menu",
+			"script": "menu"
+		},
+		{
+			"title": "About",
+			"script": "about"
+		},
+		{
+			"title": "Contact",
+			"script": "contact"
+		}
+	]
 }

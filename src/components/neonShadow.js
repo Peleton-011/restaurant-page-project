@@ -32,101 +32,100 @@ import { Style, StylePack } from "./cssGenerator";
 // To-Do: Actually implement Button
 
 class Button extends StylePack {
-    #neonColor;
-    #secondaryColor;
-    shadow;
-    box;
+	#neonColor;
+	#secondaryColor;
+	shadow;
+	box;
 
-    constructor(options) {
-        const newOptions = Object.assign({}, options);
+	constructor(options) {
+		const newOptions = Object.assign({}, options);
 
-        this.#neonColor = options.neonColor || "hsl(317, 100%, 54%)";
-        newOptions.neonColor = this.#neonColor;
+		this.#neonColor = options.neonColor || "hsl(317, 100%, 54%)";
+		newOptions.neonColor = this.#neonColor;
 
-        this.#secondaryColor = options.secondaryColor || "hsl(321, 21%, 16%)";
-        newOptions.secondaryColor = this.#secondaryColor;
+		this.#secondaryColor = options.secondaryColor || "hsl(321, 21%, 16%)";
+		newOptions.secondaryColor = this.#secondaryColor;
 
-        newOptions.selector = options.selector || ".neon-button";
+		newOptions.selector = options.selector || ".neon-button";
 
-        this.shadow = new Shadow(newOptions);
-        this.box = new Box(newOptions);
+		this.shadow = new Shadow(newOptions);
+		this.box = new Box(newOptions);
 
-        newOptions.defaultSettings = {
-            border: `${this.#neonColor} 0.125em solid`,
-            padding: `0.25em 1em`,
-            "border-radius": `0.25em`,
-            "box-shadow": `inset 0 0 2em 0.5em ${
-                this.#neonColor
-            } , 0 0 2em 0.5em ${this.#neonColor}`,
-            background: `${this.#secondaryColor}`,
-        };
+		newOptions.defaultSettings = {
+			border: `${this.#neonColor} 0.125em solid`,
+			padding: `0.25em 1em`,
+			"border-radius": `0.25em`,
+			"box-shadow": `inset 0 0 2em 0.5em ${
+				this.#neonColor
+			} , 0 0 2em 0.5em ${this.#neonColor}`,
+			background: `${this.#secondaryColor}`,
+		};
 
-        super(newOptions);
-    }
+		super(newOptions);
+	}
 }
 
 //Only "necessary" options are "neonColor" and "secondaryColor". Optional "selector"
 class Shadow extends StylePack {
-    #neonColor;
-    #secondaryColor;
+	#neonColor;
+	#secondaryColor;
 
-    constructor(options) {
-        const newOptions = Object.assign({}, options);
+	constructor(options) {
+		const newOptions = Object.assign({}, options);
 
-        this.#neonColor = options.neonColor || "hsl(317, 100%, 54%)";
-        delete newOptions.neonColor;
+		this.#neonColor = options.neonColor || "hsl(317, 100%, 54%)";
+		delete newOptions.neonColor;
 
-        this.#secondaryColor = options.secondaryColor || "hsl(321, 21%, 16%)";
-        delete newOptions.secondaryColor;
+		this.#secondaryColor = options.secondaryColor || "hsl(321, 21%, 16%)";
+		delete newOptions.secondaryColor;
 
-        newOptions.selector = options.selector || ".neon-shadow";
+		newOptions.selector = options.selector || ".neon-shadow";
 
-        newOptions.defaultSettings = {
-            "font-size": "1.25rem",
-            display: "inline-block",
-            cursor: "pointer",
-            "text-decoration": "none",
-            "text-shadow": `0 0 0.125em ${this.#secondaryColor}, 0 0 0.6em ${
-                this.#neonColor
-            }`,
-            transition: "all 100ms linear",
-        };
+		newOptions.defaultSettings = {
+			"font-size": "1.25rem",
+			display: "inline-block",
+			cursor: "pointer",
+			"text-decoration": "none",
+			"text-shadow": `0 0 0.125em ${this.#secondaryColor}, 0 0 0.6em ${
+				this.#neonColor
+			}`,
+			transition: "all 100ms linear",
+		};
 
-        super(newOptions);
-    }
+		super(newOptions);
+	}
 }
 
 class Box extends StylePack {
-    #neonColor;
-    #secondaryColor;
-    shadow;
+	#neonColor;
+	#secondaryColor;
+	shadow;
 
-    constructor(options) {
-        const newOptions = Object.assign({}, options);
+	constructor(options) {
+		const newOptions = Object.assign({}, options);
 
-        this.#neonColor = options.neonColor || "hsl(317, 100%, 54%)";
-        newOptions.neonColor = this.#neonColor;
+		this.#neonColor = options.neonColor || "hsl(317, 100%, 54%)";
+		newOptions.neonColor = this.#neonColor;
 
-        this.#secondaryColor = options.secondaryColor || "hsl(321, 21%, 16%)";
-        newOptions.secondaryColor = this.#secondaryColor;
+		this.#secondaryColor = options.secondaryColor || "hsl(321, 21%, 16%)";
+		newOptions.secondaryColor = this.#secondaryColor;
 
-        newOptions.selector = options.selector || ".neon-box";
+		newOptions.selector = options.selector || ".neon-box";
 
-        this.shadow = new Shadow(newOptions);
+		this.shadow = new Shadow(newOptions);
 
-        newOptions.defaultSettings = {
-            border: `${this.#neonColor} 0.125em solid`,
-            padding: `0.25em 1em`,
-            "border-radius": `0.25em`,
-            "box-shadow": `inset 0 0 2em 0.5em ${
-                this.#neonColor
-            } , 0 0 2em 0.5em ${this.#neonColor}`,
-            background: `${this.#secondaryColor}`,
-        };
+		newOptions.defaultSettings = {
+			border: `${this.#neonColor} 0.125em solid`,
+			padding: `0.25em 1em`,
+			"border-radius": `0.25em`,
+			"box-shadow": `inset 0 0 2em 0.5em ${
+				this.#neonColor
+			} , 0 0 2em 0.5em ${this.#neonColor}`,
+			background: `${this.#secondaryColor}`,
+		};
 
-        super(newOptions);
-    }
+		super(newOptions);
+	}
 }
 
-
-export {Shadow, Box, Button};
+export { Shadow, Box, Button };

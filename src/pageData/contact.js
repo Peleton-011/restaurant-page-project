@@ -1,17 +1,17 @@
 function component() {
-    const element = document.createElement("div");
-    const btn = document.createElement("button");
+	const element = document.createElement("div");
+	const btn = document.createElement("button");
 
-    // Lodash, now imported by this script
-    element.innerHTML = "Contact page";
+	// Lodash, now imported by this script
+	element.innerHTML = "Contact page";
 
-    element.appendChild(btn);
+	element.appendChild(btn);
 
-    return element;
+	return element;
 }
 
 function main(parent) {
-    parent.appendChild(component());
+	parent.appendChild(component());
 }
 
 export { main };

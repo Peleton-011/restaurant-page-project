@@ -22,12 +22,11 @@ function component() {
 
 	const japTitle = document.createElement("h2");
 
-	japTitle.innerHTML = `スペースウェイX - <span style="filter: hue-rotate(-30deg)">\u00A713 </span>のベストストップ`
+	japTitle.innerHTML = `スペースウェイX - <span style="filter: hue-rotate(-30deg)">\u00A713 </span>のベストストップ`;
 	japTitle.className = "glowy-text";
 	titles.appendChild(japTitle);
 
 	card.appendChild(titles);
-
 
 	//______
 
