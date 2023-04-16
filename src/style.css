@@ -1,213 +1,232 @@
 @import url("./fonts.css");
 
 :root {
-    --neon-color: hsl(317, 100%, 54%);
-    --bg-color: hsl(321, 21%, 16%);
+	--neon-color: hsl(317, 100%, 54%);
+	--bg-color: hsl(321, 21%, 16%);
 }
 
 * {
-    font-family: coolvetica;
-    color: var(--neon-color);
-    margin: 0px;
-    font-size: 1.1rem;
+	font-family: coolvetica;
+	color: var(--neon-color);
+	margin: 0px;
+	font-size: 1.1rem;
 }
 
 h1 {
-    filter: url(#myFilter);
+	filter: url(#myFilter);
 }
 
-section > h2 {
-    padding: 1rem 0px;
+section > hgroup {
+	padding: 2rem 0px;
+}
+
+section > hgroup > * {
+    	/* Make the text slightly italic */
+	transform: skew(-13deg);
+	-webkit-transform: skew(-13deg);
 }
 
 h2 {
-    font-size: 3rem;
+	font-size: 3rem;
 }
 
 span {
-    font-size: inherit;
+	font-size: inherit;
 }
 
-.glowy-text {
-    text-shadow: 0 0 0.125em var(--bg-color), 0 0 0.6em var(--neon-color);
+.jap-text {
+    display: inline-block;
+	/* Make the text slightly italic */
+    font-weight: bold;
+    transform: skew(-13deg);
+	-webkit-transform: skew(-13deg);
+}
+
+.glowy-text, .highlight {
+	text-shadow: 0 0 0.125em var(--bg-color), 0 0 0.6em var(--neon-color);
 }
 
 .text-shadow {
-    text-shadow: 0 0 0.6em #000;
+	text-shadow: 0 0 0.6em #000;
+}
+
+.highlight {
+    text-decoration: underline 2.5px;
+    font-size: 1.5rem;
+    filter: hue-rotate(-30deg)
 }
 
 .img-card {
-    margin: 2rem 0px;
-    padding-left: 3rem;
-    background-color: rgba(255,255,255, 0.75);
+	margin: 2rem 0px;
+	padding-left: 3rem;
+	background-color: rgba(255, 255, 255, 0.75);
 }
 
 body {
-    min-height: 100vh;
+	min-height: 100vh;
 
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 
-    background: var(--bg-color);
-    margin-left: 0;
-    margin-right: 0;
+	background: var(--bg-color);
+	margin-left: 0;
+	margin-right: 0;
 }
 
 header {
-    font-size: calc(25vh - 6rem);
+	font-size: calc(25vh - 6rem);
 
-    padding-left: 2rem;
+	padding-left: 2rem;
 
-    height: calc(25vh - 4rem);
-    width: 100%;
+	height: calc(25vh - 4rem);
+	width: 100%;
 }
 
 nav {
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
 
-    width: 100%;
+	width: 100%;
 
-    display: flex;
-    align-items: center;
-    gap: 0;
+	display: flex;
+	align-items: center;
+	gap: 0;
 }
 
 nav > .active-nav-btn {
-    border-bottom: none;
+	border-bottom: none;
 }
 
 nav > button:first-of-type {
-    padding-left: 10vw;
+	padding-left: 10vw;
 }
 
 nav > button:last-of-type {
-    text-align: left;
-    border-right: none;
-    width: 100%;
+	text-align: left;
+	border-right: none;
+	width: 100%;
 }
 
 nav > button {
+	display: inline-block;
+	cursor: pointer;
+	text-decoration: none;
+	color: var(--neon-color);
+	border: var(--neon-color) 0.125em solid;
+	border-left: none;
+	padding: 0.25em 1em;
+	/* border-radius: 0.25em; */
 
-    display: inline-block;
-    cursor: pointer;
-    text-decoration: none;
-    color: var(--neon-color);
-    border: var(--neon-color) 0.125em solid;
-    border-left: none;
-    padding: 0.25em 1em;
-    /* border-radius: 0.25em; */
+	text-shadow: 0 0 0.125em var(--bg-color), 0 0 0.6em var(--neon-color);
 
-    text-shadow: 0 0 0.125em var(--bg-color), 0 0 0.6em var(--neon-color);
+	box-shadow: inset 0 0 0.5em 0 var(--neon-color),
+		0 0 0.5em 0 var(--neon-color);
 
-    box-shadow: inset 0 0 0.5em 0 var(--neon-color),
-        0 0 0.5em 0 var(--neon-color);
+	position: relative;
 
-    position: relative;
+	background: var(--bg-color);
 
-    background: var(--bg-color);
-
-    transition: all 100ms linear;
+	transition: all 100ms linear;
 }
 
 nav > butt-on::before {
-    pointer-events: none;
-    content: "";
-    position: absolute;
-    background: var(--neon-color);
-    top: 120%;
-    left: 0;
-    width: 100%;
-    height: 100%;
+	pointer-events: none;
+	content: "";
+	position: absolute;
+	background: var(--neon-color);
+	top: 120%;
+	left: 0;
+	width: 100%;
+	height: 100%;
 
-    transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
-    filter: blur(1em);
-    opacity: 0.7;
+	transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+	filter: blur(1em);
+	opacity: 0.7;
 }
 
 nav > button::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    box-shadow: 0 0 2em 0.5em var(--neon-color);
-    opacity: 0;
-    background-color: var(--neon-color);
-    z-index: -1;
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	box-shadow: 0 0 2em 0.5em var(--neon-color);
+	opacity: 0;
+	background-color: var(--neon-color);
+	z-index: -1;
 }
 
 nav > button:hover,
 nav > button:active {
-    color: var(--bg-color);
-    background-color: var(--neon-color);
-    text-shadow: none;
+	color: var(--bg-color);
+	background-color: var(--neon-color);
+	text-shadow: none;
 }
 
 nav > button:hover::before,
 nav > button:active::before {
-    opacity: 1;
+	opacity: 1;
 }
 nav > button:hover::after,
 nav > button:active::after {
-    opacity: 1;
+	opacity: 1;
 }
 
 .sticky {
-    position: fixed;
-    margin: 0;
-    top: 0;
-    width: 100%;
+	position: fixed;
+	margin: 0;
+	top: 0;
+	width: 100%;
 }
 
 /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
 .sticky + main {
-    padding-top: 60px;
+	padding-top: 60px;
 }
 
 main {
-    min-height: 100%;
-    width: 100%;
+	min-height: 100%;
+	width: 100%;
 }
 
 .container {
-    padding: 1em 0px;
+	padding: 1em 0px;
 }
 
 .bg-img {
-    min-height: 50vh;
-    width: 100vw;
-    background-size: cover;
-    background-position: center;
+	min-height: 50vh;
+	width: 100vw;
+	background-size: cover;
+	background-position: center;
 
-    font-size: 1.25rem;
+	font-size: 1.25rem;
 
-    border-bottom: var(--neon-color) 0.125em solid;
+	border-bottom: var(--neon-color) 0.125em solid;
 
-    box-shadow: inset 0 -0.25em 0.5em -0.25em var(--neon-color),
-        0 0 0.5em 0 var(--neon-color);
-    transition: all 100ms linear;
+	box-shadow: inset 0 -0.25em 0.5em -0.25em var(--neon-color),
+		0 0 0.5em 0 var(--neon-color);
+	transition: all 100ms linear;
 }
 
 text {
-    font-size: 8rem;
-    position: relative;
-    bottom: 0;
-    left: 1rem;
-    transform: translate(2rem, 7rem);
+	font-size: 8rem;
+	position: relative;
+	bottom: 0;
+	left: 1rem;
+	transform: translate(2rem, 7rem);
 }
 
 #tvBarOverlay {
-    animation: 10s tvBarAnimation infinite forwards;
+	animation: 10s tvBarAnimation infinite forwards;
 }
 
 @keyframes tvBarAnimation {
-    from {
-        background-position: 0% 0%;
-    }
+	from {
+		background-position: 0% 0%;
+	}
 
-    to {
-        background-position: 0% -100%;
-    }
+	to {
+		background-position: 0% -100%;
+	}
 }
