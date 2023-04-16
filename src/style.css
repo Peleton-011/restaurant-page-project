@@ -66,10 +66,32 @@ span {
 	filter: hue-rotate(-30deg);
 }
 
+.card {
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
 .img-card {
 	margin: 2rem 0px;
 	padding-left: 3rem;
-	background-color: rgba(255, 255, 255, 0.75);
+}
+
+.modal-card {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    height: max(20vh, 500px);
+
+    margin: 3rem;
+    max-width: min(1000px, 75%);
+}
+
+.modal-card.reverse {
+    flex-wrap: wrap-reverse;
+}
+
+.modal-card > img {
+    height: max(20vh, 500px);
 }
 
 body {
@@ -198,6 +220,10 @@ nav > button:active::after {
 main {
 	min-height: 100%;
 	width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .container {

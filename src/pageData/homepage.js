@@ -64,9 +64,9 @@ function makeCTO(ctoData) {
 	return cto;
 }
 
-function card({ callToAction, cardData }) {
+function card({ callToAction, cardData, cardClass }) {
 	const card = document.createElement("section");
-	card.className = "img-card";
+	card.className = "card " + cardClass;
 
 	//Titles for the card over image
 	const title = makeHeader(cardData.title);
@@ -97,6 +97,7 @@ async function bgImgSection({ callToAction, content }) {
 	const cardElem = card({
 		callToAction,
 		cardData: content.bgImgSection.card,
+		cardClass: "img-card",
 	});
 
 	page.appendChild(cardElem);
@@ -107,11 +108,12 @@ async function bgImgSection({ callToAction, content }) {
 async function modal({ callToAction, modalData }) {
 	const pic = await getImage(modalData.img);
 	const img = document.createElement("img");
-	img.src = pic; 
+	img.src = pic;
 
 	const cardElem = card({
 		callToAction,
 		cardData: modalData.card,
+		cardClass: `modal-card ${modalData.imgOnLeft ? "reverse" : ""}`,
 	});
 
 	cardElem.appendChild(img);
@@ -150,7 +152,6 @@ async function main({ target: parent, tabs }) {
 				modalData,
 			})
 		);
-		
 	}
 
 	parent.appendChild(modals);
