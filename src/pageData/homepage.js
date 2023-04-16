@@ -1,6 +1,6 @@
 import restaurantPic from "../assets/images/restaurant-img.jpeg";
 
-function component() {
+function component({ tabs }) {
 	const page = document.createElement("div");
 	page.className = "container bg-img";
 
@@ -30,6 +30,13 @@ function component() {
 
 	//______
 
+	const goToContactPage = () => {
+		const contactIndex = tabs.findIndex(tab => tab.name === "Contact");
+		tabs[contactIndex].script({
+			target: document.getElementById("Contact-btn"),
+		});
+	};
+
 	const desc = document.createElement("p");
 	desc.className = "text-shadow";
 
@@ -40,19 +47,33 @@ function component() {
 	<span class="jap-text">ほっと一息つくのに美味しい食事が必要？</span><br><br>
     Want a drink while you wait for your FTL drive to cool down?<br>
 	<span class="jap-text">光より速いドライブが冷めるのを待つ間、飲み物はいかがですか？</span><br><br>
-    <strong><em class="highlight">We've Got You Covered!</em> &nbsp;&nbsp;|&nbsp;&nbsp;
-	<span class="jap-text highlight">私たちは、あなたをサポートしています！</span></strong><br><br>
+    	<strong>
+			<button class="link">	
+				<em class="highlight">Make a Reservation!</em> 
+			</button>	
+			&nbsp;&nbsp;|&nbsp;&nbsp;
+			<button class="link">	
+				<span class="jap-text highlight">を予約してください！</span>
+			</button>	
+		</strong>
+	<br><br>
     `;
+	//We've Got You Covered!
+	//私たちは、あなたをサポートしています！
 
 	card.appendChild(desc);
+
+	card.querySelectorAll("button.link").forEach((btn) => {
+		btn.addEventListener("click", goToContactPage);
+	});
 
 	page.appendChild(card);
 
 	return page;
 }
 
-function main({target: parent, tabs}) {
-	parent.appendChild(component());
+function main({ target: parent, tabs }) {
+	parent.appendChild(component({ tabs }));
 }
 
 export { main };
