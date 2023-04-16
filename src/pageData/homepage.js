@@ -1,5 +1,3 @@
-import restaurantPic from "../assets/images/restaurant-img.jpeg";
-
 import content from "./pageContent/homepage.json";
 
 function makeHeader(titleData) {
@@ -19,7 +17,7 @@ function makeHeader(titleData) {
 	return titles;
 }
 
-function makeDescription({descData, ctoData}) {
+function makeDescription({ descData, ctoData }) {
 	const desc = document.createElement("p");
 	desc.className = "text-shadow";
 
@@ -33,7 +31,7 @@ function makeDescription({descData, ctoData}) {
 
 	desc.innerHTML += makeCTO(ctoData).outerHTML;
 
-	desc.innerHTML += "<br><br>"
+	desc.innerHTML += "<br><br>";
 
 	//We've Got You Covered!
 	//私たちは、あなたをサポートしています！
@@ -42,7 +40,6 @@ function makeDescription({descData, ctoData}) {
 }
 
 function makeCTO(ctoData) {
-
 	const cto = document.createElement("strong");
 
 	const enBtn = document.createElement("button");
@@ -55,7 +52,6 @@ function makeCTO(ctoData) {
 	cto.appendChild(enBtn);
 	cto.innerHTML += `&nbsp;&nbsp;|&nbsp;&nbsp;`;
 
-
 	const jpBtn = document.createElement("button");
 	jpBtn.className = "link";
 	const jp = document.createElement("span");
@@ -65,25 +61,10 @@ function makeCTO(ctoData) {
 
 	cto.appendChild(jpBtn);
 
-	const ass = `
-
-	
-    	<strong>
-			<button class="link">	
-				<em class="highlight"></em> 
-			</button>	
-			&nbsp;&nbsp;|&nbsp;&nbsp;
-			<button class="link">	
-				<span class="jap-text highlight"></span>
-			</button>	
-		</strong>
-    `;
 	return cto;
 }
 
-function card({ callToAction }) {
-	const cardData = content.card;
-
+function card({ callToAction, cardData }) {
 	const card = document.createElement("section");
 	card.className = "img-card";
 
@@ -93,7 +74,10 @@ function card({ callToAction }) {
 
 	//Description for the card over image
 
-	const desc = makeDescription({descData: cardData.desc, ctoData: cardData.cto});
+	const desc = makeDescription({
+		descData: cardData.desc,
+		ctoData: cardData.cto,
+	});
 	card.appendChild(desc);
 
 	card.querySelectorAll("button.link").forEach((btn) => {
@@ -103,27 +87,47 @@ function card({ callToAction }) {
 	return card;
 }
 
-function bgImgSection({ callToAction }) {
+async function bgImgSection({ callToAction, content }) {
+	const pic = await getImage(content.bgImgSection.img);
 	const page = document.createElement("div");
 	page.className = "container bg-img";
 
-	page.style.backgroundImage = `url(${restaurantPic})`;
+	page.style.backgroundImage = `url(${pic})`;
 
-	const cardElem = card({ callToAction });
+	const cardElem = card({
+		callToAction,
+		cardData: content.bgImgSection.card,
+	});
 
 	page.appendChild(cardElem);
 
 	return page;
 }
 
-function main({ target: parent, tabs }) {
+function modal({ pic }) {}
+
+async function getImage (name) {
+	const img = await import(`../assets/images/homepage/${name}`);
+	// console.log(JSON.stringify(img.default, null, 2));
+	return img.default;
+}
+
+async function main({ target: parent, tabs }) {
 	const goToContactPage = () => {
 		const contactIndex = tabs.findIndex((tab) => tab.name === "Contact");
 		tabs[contactIndex].script({
 			target: document.getElementById("Contact-btn"),
 		});
 	};
-	parent.appendChild(bgImgSection({ callToAction: goToContactPage }));
+
+	parent.appendChild(
+		await bgImgSection({
+			callToAction: goToContactPage,
+			content,
+		})
+	);
+
+	parent.appendChild(modal({ content, pic: "streetPic" }));
 }
 
 export { main };
