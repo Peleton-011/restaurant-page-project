@@ -51,7 +51,7 @@ function component() {
 	return page;
 }
 
-function main(parent) {
+function main({target: parent, tabs}) {
 	parent.appendChild(component());
 }
 

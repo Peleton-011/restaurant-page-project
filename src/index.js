@@ -112,7 +112,7 @@ const addTabs = async (pageList) => {
 		document.querySelector("nav").appendChild(thisTab.tabButton());
 	}
 
-	Tab.prototype.getScript(tabs[0].page.script)({
+	tabs[0].script({
 		target: document.querySelector(".tab"),
 	});
 };
@@ -121,6 +121,7 @@ class Tab {
 	constructor(page) {
 		this.name = page.title;
 		this.page = page;
+        this.script = this.getScript(this.page.script);
 
 		return;
 	}
@@ -129,7 +130,7 @@ class Tab {
 		const reDraw = () => {
 			return import(`./pageData/${name}.js`).then((pageScript) => {
 				this.cleanCanvas();
-				pageScript.main(document.querySelector("main"));
+				pageScript.main({target: document.querySelector("main"), tabs: tabs});
 			});
 		};
 
@@ -151,7 +152,7 @@ class Tab {
 	}
 
 	tabButton() {
-		const script = this.getScript(this.page.script);
+		const script = this.script;
 		const tabButton = button(this.name, "tab", `${this.name}-btn`, script);
 		return tabButton;
 	}

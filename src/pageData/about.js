@@ -10,7 +10,7 @@ function component() {
 	return element;
 }
 
-function main(parent) {
+function main({target: parent, tabs}) {
 	parent.appendChild(component());
 }
 
