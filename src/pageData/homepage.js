@@ -114,7 +114,9 @@ async function modal({ callToAction, modalData }) {
 		cardData: modalData.card,
 	});
 
-	return img;
+	cardElem.appendChild(img);
+
+	return cardElem;
 }
 
 async function getImage(name) {
