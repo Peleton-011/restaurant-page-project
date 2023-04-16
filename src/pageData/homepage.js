@@ -19,7 +19,7 @@ function makeHeader(titleData) {
 	return titles;
 }
 
-function makeDescription(descData) {
+function makeDescription({descData, ctoData}) {
 	const desc = document.createElement("p");
 	desc.className = "text-shadow";
 
@@ -30,11 +30,55 @@ function makeDescription(descData) {
 	}, "");
 
 	desc.innerHTML = descHTML;
-	
+
+	desc.innerHTML += makeCTO(ctoData).outerHTML;
+
+	desc.innerHTML += "<br><br>"
+
 	//We've Got You Covered!
 	//私たちは、あなたをサポートしています！
 
 	return desc;
+}
+
+function makeCTO(ctoData) {
+
+	const cto = document.createElement("strong");
+
+	const enBtn = document.createElement("button");
+	enBtn.className = "link";
+	const en = document.createElement("em");
+	en.className = "highlight";
+	en.innerHTML = ctoData.en;
+	enBtn.appendChild(en);
+
+	cto.appendChild(enBtn);
+	cto.innerHTML += `&nbsp;&nbsp;|&nbsp;&nbsp;`;
+
+
+	const jpBtn = document.createElement("button");
+	jpBtn.className = "link";
+	const jp = document.createElement("span");
+	jp.className = "jap-text highlight";
+	jp.innerHTML = ctoData.jp;
+	jpBtn.appendChild(jp);
+
+	cto.appendChild(jpBtn);
+
+	const ass = `
+
+	
+    	<strong>
+			<button class="link">	
+				<em class="highlight"></em> 
+			</button>	
+			&nbsp;&nbsp;|&nbsp;&nbsp;
+			<button class="link">	
+				<span class="jap-text highlight"></span>
+			</button>	
+		</strong>
+    `;
+	return cto;
 }
 
 function card({ callToAction }) {
@@ -47,10 +91,9 @@ function card({ callToAction }) {
 	const title = makeHeader(cardData.title);
 	card.appendChild(title);
 
-	//______
+	//Description for the card over image
 
-	const desc = makeDescription(cardData.desc);
-
+	const desc = makeDescription({descData: cardData.desc, ctoData: cardData.cto});
 	card.appendChild(desc);
 
 	card.querySelectorAll("button.link").forEach((btn) => {
