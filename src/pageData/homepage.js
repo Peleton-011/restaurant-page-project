@@ -65,7 +65,7 @@ function makeCTO(ctoData) {
 }
 
 function card({ callToAction, cardData, cardClass }) {
-	const card = document.createElement("section");
+	const card = document.createElement("article");
 	card.className = "card " + cardClass;
 
 	//Titles for the card over image
@@ -116,7 +116,19 @@ async function modal({ callToAction, modalData }) {
 		cardClass: `modal-card ${modalData.imgOnLeft ? "reverse" : ""}`,
 	});
 
+	const cardText = document.createElement("div");
+	cardText.className = "modal-text";
+	cardText.innerHTML = cardElem.innerHTML;
+	
+	cardElem.innerHTML = "";
+
+	cardElem.appendChild(cardText);
+
 	cardElem.appendChild(img);
+
+	cardElem.querySelectorAll("button.link").forEach((btn) => {
+		btn.addEventListener("click", callToAction);
+	});
 
 	return cardElem;
 }
@@ -142,7 +154,7 @@ async function main({ target: parent, tabs }) {
 		})
 	);
 
-	const modals = document.createElement("section");
+	const modals = document.createElement("div");
 
 	for (let i = 0; i < content.modals.length; i++) {
 		const modalData = content.modals[i];
