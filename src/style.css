@@ -95,18 +95,18 @@ span {
 }
 
 .modal-list {
-    z-index: 4;
+	z-index: 4;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-    background: none;
+	background: none;
 }
 
 .modal-list > .modal-bg {
-    /* visibility: hidden; */
-    z-index: 1;
-    position: absolute;
-    height: 100vh;
+	/* visibility: hidden; */
+	z-index: 1;
+	position: absolute;
+	height: 100vh;
 	width: 100vw;
 	perspective: 800px;
 	overflow: hidden;
@@ -146,8 +146,9 @@ span {
 	background-position-y: top;
 }
 
-.modal-forward, .modal-backward {
-    z-index: 6;
+.modal-forward,
+.modal-backward {
+	z-index: 6;
 }
 
 @keyframes crawlingWall {
@@ -157,7 +158,7 @@ span {
 }
 
 .modal-card {
-    z-index: 4;
+	z-index: 4;
 
 	display: flex;
 	flex-direction: row;
@@ -200,6 +201,38 @@ span {
 	object-position: center;
 }
 
+.modal-card {
+	position: absolute;
+	transition: transform 400ms ease;
+}
+
+.modal-card[data-status="unknown"] {
+	transform: scale(0);
+	transition: none;
+}
+
+.modal-card[data-status="active"] {
+	transition-delay: 300ms;
+}
+
+.modal-card[data-status="after"] {
+	transform: translateX(50%) scale(0);
+}
+
+.modal-card[data-status="before"] {
+	transform: translateX(-50%) scale(0);
+}
+
+.modal-card[data-status="becoming-active-from-after"] {
+	transform: translateX(50%) scale(0);
+	transition: none;
+}
+
+.modal-card[data-status="becoming-active-from-before"] {
+	transform: translateX(-50%) scale(0);
+	transition: none;
+}
+
 body {
 	min-height: 100vh;
 
@@ -226,7 +259,7 @@ nav {
 
 	width: 100%;
 
-    z-index: 10;
+	z-index: 10;
 
 	display: flex;
 	align-items: center;
@@ -329,8 +362,8 @@ main {
 	min-height: 100%;
 	width: 100%;
 
-    z-index: 4;
-    position: relative;
+	z-index: 4;
+	position: relative;
 
 	display: flex;
 	flex-direction: column;
