@@ -105,7 +105,7 @@ async function bgImgSection({ callToAction, content }) {
 	return page;
 }
 
-async function modal({ callToAction, modalData }) {
+async function modal({ callToAction, modalData, index, status }) {
 	const pic = await getImage(modalData.img);
 	const img = document.createElement("img");
 	img.src = pic;
@@ -113,13 +113,18 @@ async function modal({ callToAction, modalData }) {
 	const cardElem = card({
 		callToAction,
 		cardData: modalData.card,
-		cardClass: `glowy-border modal-card ${modalData.imgOnLeft ? "reverse" : ""}`,
+		cardClass: `glowy-border modal-card ${
+			modalData.imgOnLeft ? "reverse" : ""
+		}`,
 	});
+
+	cardElem.setAttribute("data-index", index || 0);
+	cardElem.setAttribute("data-status", status || "unknown");
 
 	const cardText = document.createElement("div");
 	cardText.className = "modal-text";
 	cardText.innerHTML = cardElem.innerHTML;
-	
+
 	cardElem.innerHTML = "";
 
 	cardElem.appendChild(cardText);
@@ -131,6 +136,50 @@ async function modal({ callToAction, modalData }) {
 	});
 
 	return cardElem;
+}
+
+async function modalList({ handleNextModal, handlePrevModal, content }) {
+	function moveBtn(isFwd) {
+		const btn = document.createElement("button");
+		btn.className =
+			"glowy-text " + (isFwd ? "modal-forward" : "modal-backward");
+		btn.innerHTML = isFwd ? ">" : "<";
+		btn.addEventListener(
+			"click",
+			isFwd ? handleNextModal : handlePrevModal
+		);
+
+		return btn;
+	}
+
+	const modals = document.createElement("section");
+
+	modals.className = "modal-list";
+
+	const modalBg = document.createElement("div");
+	modalBg.className = "modal-bg";
+	const crawly = document.createElement("div");
+	crawly.className = "crawly";
+	modalBg.appendChild(crawly);
+	modals.appendChild(modalBg);
+
+	modals.appendChild(moveBtn());
+
+	for (let i = 0; i < content.modals.length; i++) {
+		const modalData = content.modals[i];
+		modals.appendChild(
+			await modal({
+				callToAction: () => console.log("testy log! c:"),
+				modalData,
+				index: i,
+				status: "unknown",
+			})
+		);
+	}
+
+	modals.appendChild(moveBtn(true));
+
+	return modals;
 }
 
 async function getImage(name) {
@@ -154,26 +203,61 @@ async function main({ target: parent, tabs }) {
 		})
 	);
 
-	const modals = document.createElement("section");
-	modals.className = "modal-list";
-
-	const modalBg = document.createElement("div");
-	modalBg.className = "modal-bg";
-	const crawly = document.createElement("div");
-	crawly.className = "crawly";
-	modalBg.appendChild(crawly);
-	modals.appendChild(modalBg);
-
-	for (let i = 0; i < content.modals.length; i++) {
-		const modalData = content.modals[i];
-		modals.appendChild(
-			await modal({
-				callToAction: () => console.log("testy log! c:"),
-				modalData,
-			})
-		);
+	let activeIndex = 0;
+	const modalGroup = document.getElementsByClassName("modal-card");
+	function getNextIndex(isFwd) {
+		let nextIndex;
+		if (isFwd) {
+			nextIndex =
+				activeIndex + 1 <= modalGroup.length - 1 ? activeIndex + 1 : 0;
+		} else {
+			nextIndex =
+				activeIndex - 1 >= 0 ? activeIndex - 1 : modalGroup.length - 1;
+		}
+		return nextIndex;
 	}
 
+	function handleNextModal() {
+		const nextIndex = getNextIndex(true);
+		const currentModal = document.querySelector(
+			`[data-index="${activeIndex}"]`
+		);
+        console.log(currentModal)
+        console.log(nextIndex)
+		const nextModal = document.querySelector(`[data-index="${nextIndex}"]`);
+
+		currentModal.dataset.status = "after";
+		nextModal.dataset.status = "becoming-active-from-before";
+
+		setTimeout(() => {
+			nextModal.dataset.status = "active";
+			activeIndex = nextIndex;
+		});
+	}
+
+	function handlePrevModal() {
+		const nextIndex = getNextIndex(false);
+		const currentModal = document.querySelector(
+			`[data-index="${activeIndex}"]`
+		);
+        console.log(currentModal)
+        console.log(nextIndex)
+		const nextModal = document.querySelector(`[data-index="${nextIndex}"]`);
+
+		currentModal.dataset.status = "before";
+		nextModal.dataset.status = "becoming-active-from-after";
+
+		setTimeout(() => {
+			nextModal.dataset.status = "active";
+			activeIndex = nextIndex;
+		});
+	}
+
+	const modals = await modalList({
+		handleNextModal,
+		handlePrevModal,
+		content,
+	});
 	parent.appendChild(modals);
 }
 

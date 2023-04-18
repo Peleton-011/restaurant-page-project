@@ -146,6 +146,10 @@ span {
 	background-position-y: top;
 }
 
+.modal-forward, .modal-backward {
+    z-index: 6;
+}
+
 @keyframes crawlingWall {
 	to {
 		background-position-y: bottom;
