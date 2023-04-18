@@ -9,7 +9,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 const isProductionMode = (mode) => mode === "production";
-const currMode = "development"; // production
+const currMode = "development"; // production / developpement
 
 module.exports = () => {
     // This code executes before module.exports is defined.
