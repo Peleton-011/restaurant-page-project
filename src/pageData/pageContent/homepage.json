@@ -50,6 +50,30 @@
 					"jp": "cto 試練"
 				}
 			}
+		},
+        {
+			"imgOnLeft": false,
+			"img": "restaurant-img.jpeg",
+			"card": {
+				"title": {
+					"en": "test 4",
+					"jp": "試練 4"
+				},
+				"desc": [
+					{
+						"en": "test 5",
+						"jp": "試練 5"
+					},
+					{
+						"en": "test 6",
+						"jp": "試練 6"
+					}
+				],
+				"cto": {
+					"en": "cto 2 here",
+					"jp": "cto 2 試練"
+				}
+			}
 		}
 	]
 }

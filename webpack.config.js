@@ -70,7 +70,7 @@ module.exports = () => {
         },
         plugins: [
             new HtmlWebpackPlugin({
-                title: "Sample",
+                title: "Paradise 11",
             }),
         ],
         output: {

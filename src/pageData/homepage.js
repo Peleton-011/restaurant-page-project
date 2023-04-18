@@ -113,7 +113,7 @@ async function modal({ callToAction, modalData }) {
 	const cardElem = card({
 		callToAction,
 		cardData: modalData.card,
-		cardClass: `modal-card ${modalData.imgOnLeft ? "reverse" : ""}`,
+		cardClass: `glowy-border modal-card ${modalData.imgOnLeft ? "reverse" : ""}`,
 	});
 
 	const cardText = document.createElement("div");
@@ -154,7 +154,15 @@ async function main({ target: parent, tabs }) {
 		})
 	);
 
-	const modals = document.createElement("div");
+	const modals = document.createElement("section");
+	modals.className = "modal-list";
+
+	const modalBg = document.createElement("div");
+	modalBg.className = "modal-bg";
+	const crawly = document.createElement("div");
+	crawly.className = "crawly";
+	modalBg.appendChild(crawly);
+	modals.appendChild(modalBg);
 
 	for (let i = 0; i < content.modals.length; i++) {
 		const modalData = content.modals[i];

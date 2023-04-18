@@ -14,6 +14,25 @@
 	font-size: 1.1rem;
 }
 
+.glowy-border {
+	text-decoration: none;
+	color: var(--neon-color);
+	border: var(--neon-color) 0.125em solid;
+	padding: 0.25em 1em;
+	/* border-radius: 0.25em; */
+
+	text-shadow: 0 0 0.125em var(--bg-color), 0 0 0.6em var(--neon-color);
+
+	box-shadow: inset 0 0 0.5em 0 var(--neon-color),
+		0 0 0.5em 0 var(--neon-color);
+
+	position: relative;
+
+	background: var(--bg-color);
+
+	transition: all 100ms linear;
+}
+
 h1 {
 	filter: url(#myFilter);
 }
@@ -33,10 +52,10 @@ h2 {
 }
 
 button.link {
-    font-size: inherit;
-    border: none;
-    background: none;
-    cursor: pointer;
+	font-size: inherit;
+	border: none;
+	background: none;
+	cursor: pointer;
 }
 
 span {
@@ -67,7 +86,7 @@ span {
 }
 
 .card {
-    background-color: rgba(255, 255, 255, 0.75);
+	background-color: rgba(255, 255, 255, 0.75);
 }
 
 .img-card {
@@ -75,28 +94,106 @@ span {
 	padding-left: 3rem;
 }
 
+.modal-list {
+    z-index: 4;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+    background: none;
+}
+
+.modal-list > .modal-bg {
+    /* visibility: hidden; */
+    z-index: 1;
+    position: absolute;
+    height: 100vh;
+	width: 100vw;
+	perspective: 800px;
+	overflow: hidden;
+	background-image: linear-gradient(
+		to top,
+		#0f0209,
+		#23061d,
+		#330531,
+		#3e024b,
+		#41056a,
+		#520578,
+		#640385,
+		#770092,
+		#9b0089,
+		#b8007e,
+		#ce1173,
+		#e03168
+	);
+}
+
+.modal-bg > .crawly {
+	background-size: 40px 40px;
+	background-image: linear-gradient(
+			to right,
+			rgba(255, 255, 255, 0.2) 1px,
+			transparent 1px
+		),
+		linear-gradient(
+			to bottom,
+			rgba(255, 255, 255, 0.2) 1px,
+			transparent 1px
+		);
+	height: inherit;
+	transform: rotateX(50deg);
+	transform-origin: top center;
+	animation: 5s linear infinite crawlingWall;
+	background-position-y: top;
+}
+
+@keyframes crawlingWall {
+	to {
+		background-position-y: bottom;
+	}
+}
+
 .modal-card {
-    display: flex;
-    max-height: 750px;
+    z-index: 4;
 
-    margin: 3rem;
-    max-width: min(1000px, 75vw);
+	display: flex;
+	flex-direction: row;
+	/* justify-content: space-between; */
+	max-height: 750px;
+	justify-content: flex-start;
 
-    column-gap: 2rem;
-    padding: 2rem;
+	margin: 3rem;
+	width: fit-content;
+	max-width: min(1000px, 75vw);
+
+	column-gap: 2rem;
+	padding: 1.5rem 3rem;
 }
 
 .modal-card.reverse {
-    flex-direction: row-reverse;
+	justify-content: flex-end;
+	flex-direction: row-reverse;
 }
 
 .modal-card > img {
-    height: max(20vh, 500px);
+	height: max(20vh, 500px);
 }
 
 .modal-card > .modal-text {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
+	text-align: right;
+}
+
+.modal-card.reverse > .modal-text {
+	text-align: left;
+}
+
+.modal-card > img {
+	height: max(20vh, 500px);
+	max-width: 50%;
+
+	object-fit: cover;
+	object-position: center;
 }
 
 body {
@@ -124,6 +221,8 @@ nav {
 	padding: 0;
 
 	width: 100%;
+
+    z-index: 10;
 
 	display: flex;
 	align-items: center;
@@ -226,9 +325,12 @@ main {
 	min-height: 100%;
 	width: 100%;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    z-index: 4;
+    position: relative;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .container {

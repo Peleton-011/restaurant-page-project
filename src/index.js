@@ -24,7 +24,7 @@ const setup = () => {
 	// When the user scrolls the page, execute this function
 	window.onscroll = makeNavSticky;
 
-	const stickyDistance = 80;
+	const stickyDistance = 150;
 	// Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
 	function makeNavSticky() {
 		if (window.pageYOffset >= stickyDistance) {
