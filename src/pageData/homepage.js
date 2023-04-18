@@ -119,7 +119,10 @@ async function modal({ callToAction, modalData, index, status }) {
 	});
 
 	cardElem.setAttribute("data-index", index || 0);
-	cardElem.setAttribute("data-status", status || "unknown");
+	cardElem.setAttribute(
+		"data-status",
+		status || (index === 0 ? "active" : "unknown")
+	);
 
 	const cardText = document.createElement("div");
 	cardText.className = "modal-text";
@@ -142,7 +145,7 @@ async function modalList({ handleNextModal, handlePrevModal, content }) {
 	function moveBtn(isFwd) {
 		const btn = document.createElement("button");
 		btn.className =
-			"glowy-text " + (isFwd ? "modal-forward" : "modal-backward");
+			"glowy-text glowy-border modal-btn " + (isFwd ? "modal-forward" : "modal-backward");
 		btn.innerHTML = isFwd ? ">" : "<";
 		btn.addEventListener(
 			"click",
@@ -163,8 +166,6 @@ async function modalList({ handleNextModal, handlePrevModal, content }) {
 	modalBg.appendChild(crawly);
 	modals.appendChild(modalBg);
 
-	modals.appendChild(moveBtn());
-
 	for (let i = 0; i < content.modals.length; i++) {
 		const modalData = content.modals[i];
 		modals.appendChild(
@@ -172,12 +173,19 @@ async function modalList({ handleNextModal, handlePrevModal, content }) {
 				callToAction: () => console.log("testy log! c:"),
 				modalData,
 				index: i,
-				status: "unknown",
+				status: i === 0 ? "active" : "unknown",
 			})
 		);
 	}
 
-	modals.appendChild(moveBtn(true));
+	const btnGroup = document.createElement("div");
+
+    btnGroup.className = "modal-btn-group";
+
+	btnGroup.appendChild(moveBtn());
+	btnGroup.appendChild(moveBtn(true));
+
+	modals.appendChild(btnGroup);
 
 	return modals;
 }
@@ -222,8 +230,8 @@ async function main({ target: parent, tabs }) {
 		const currentModal = document.querySelector(
 			`[data-index="${activeIndex}"]`
 		);
-        console.log(currentModal)
-        console.log(nextIndex)
+		console.log(currentModal);
+		console.log(nextIndex);
 		const nextModal = document.querySelector(`[data-index="${nextIndex}"]`);
 
 		currentModal.dataset.status = "after";
@@ -240,8 +248,8 @@ async function main({ target: parent, tabs }) {
 		const currentModal = document.querySelector(
 			`[data-index="${activeIndex}"]`
 		);
-        console.log(currentModal)
-        console.log(nextIndex)
+		console.log(currentModal);
+		console.log(nextIndex);
 		const nextModal = document.querySelector(`[data-index="${nextIndex}"]`);
 
 		currentModal.dataset.status = "before";

@@ -99,6 +99,9 @@ span {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+
+	width: 100vw;
+	height: 100vh;
 	background: none;
 }
 
@@ -146,10 +149,27 @@ span {
 	background-position-y: top;
 }
 
+.modal-btn-group {
+	position: relative;
+	top: 83vh;
+
+	z-index: 6;
+}
+
+
 .modal-forward,
 .modal-backward {
 	z-index: 6;
+
+	margin: 1rem;
 }
+
+.modal-btn:hover {
+    transition: all 200ms ease-in;
+    background-color: var(--neon-color);
+    color: whitesmoke;
+}
+
 
 @keyframes crawlingWall {
 	to {
@@ -279,6 +299,7 @@ nav > button:last-of-type {
 	border-right: none;
 	width: 100%;
 }
+
 
 nav > button {
 	display: inline-block;
